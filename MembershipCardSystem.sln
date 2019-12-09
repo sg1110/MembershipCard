@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9C0ABAE2-0C2F-4D79-8EC2-38A453493B81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MembershipCardSystem", "src\MembershipCardSystem\MembershipCardSystem.csproj", "{DE4CCFD5-2510-4D5A-8A7E-177E0FFBD873}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{08377B84-BEC2-48B9-A2B2-C2D1D215BF2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MembershipCardSystem.UnitTests", "tests\MembershipCardSystem.UnitTests\MembershipCardSystem.UnitTests.csproj", "{69BD62AA-0F74-4435-8C11-3B5A751AD302}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DE4CCFD5-2510-4D5A-8A7E-177E0FFBD873} = {9C0ABAE2-0C2F-4D79-8EC2-38A453493B81}
+		{69BD62AA-0F74-4435-8C11-3B5A751AD302} = {08377B84-BEC2-48B9-A2B2-C2D1D215BF2C}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE4CCFD5-2510-4D5A-8A7E-177E0FFBD873}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE4CCFD5-2510-4D5A-8A7E-177E0FFBD873}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE4CCFD5-2510-4D5A-8A7E-177E0FFBD873}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE4CCFD5-2510-4D5A-8A7E-177E0FFBD873}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69BD62AA-0F74-4435-8C11-3B5A751AD302}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69BD62AA-0F74-4435-8C11-3B5A751AD302}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69BD62AA-0F74-4435-8C11-3B5A751AD302}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69BD62AA-0F74-4435-8C11-3B5A751AD302}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
