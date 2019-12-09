@@ -40,7 +40,7 @@ namespace MembershipCardSystem.DataStore
                 first_name = firstName,
                 second_name = secondName,
                 mobile_number = mobileNumber,
-                card_id = "1234567890123456"
+                card_id = "2234567890123459"
 
             }, commandType: CommandType.StoredProcedure);
         }
