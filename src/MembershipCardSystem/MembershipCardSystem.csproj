@@ -23,4 +23,8 @@
       </Content>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\MembershipCardSystem.DataStore\MembershipCardSystem.DataStore.csproj" />
+    </ItemGroup>
+
 </Project>

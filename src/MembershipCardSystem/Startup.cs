@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Data;
+using System.Data.SqlClient;
+using MembershipCardSystem.DataStore;
 using MembershipCardSystem.Status;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace MembershipCardSystem
 {
@@ -31,6 +27,10 @@ namespace MembershipCardSystem
                 Config.ApplicationConfiguration["application:version"],
                 Config.ApplicationConfiguration["application:environment"]
             ));
+            
+            services.AddTransient<IMembershipCardRepository, MembershipCardRepository>();
+
+            services.AddTransient<IDbConnection>( _ => new SqlConnection(Configuration["ConnectionString:MembershipCard"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
