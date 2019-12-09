@@ -343,3 +343,7 @@ ASALocalRun/
 
 .terraform
 dependency-check-report.html
+
+*.dll
+*.mdb
+*.apk
