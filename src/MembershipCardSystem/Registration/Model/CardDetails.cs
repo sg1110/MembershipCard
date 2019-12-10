@@ -20,7 +20,7 @@ namespace MembershipCardSystem.Registration.Model
         [Required]
         [StringLength(22)]
         public string MobileNumber { get; set; }
-        
+
     }
     
 }

@@ -20,7 +20,11 @@ namespace MembershipCardSystem.IntegrationTests.Registration
         {
 
             var request =
-                "{\"EmployeeId\": \"TestId1\",\"FirstName\": \"TestName\",\"SecondName\": \"TestName\",\"MobileNumber\": \"0123456789\"}";
+                "{\"EmployeeId\": \"TestId12345\"," +
+                "\"FirstName\": \"TestName\"," +
+                "\"SecondName\": \"TestName\"," +
+                "\"MobileNumber\": \"0123456789\"}";
+            
             var nonsense = "string";
             
             var stringrequest = new StringContent(

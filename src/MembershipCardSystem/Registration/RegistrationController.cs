@@ -39,19 +39,18 @@ namespace MembershipCardSystem.Registration
 //            }
 
             try
-           {
-               await _cardRepository.SaveRegistrationDetails(cardDetails.EmployeeId,
-                   cardDetails.FirstName,
-                   cardDetails.SecondName,
-                   cardDetails.MobileNumber);
-           }
-           catch (DbException e)
-           {
-               Console.WriteLine(e);
-               return this.StatusCode(StatusCodes.Status500InternalServerError, e.Message);
-               //return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
-           }
-
+            {
+                await _cardRepository.SaveRegistrationDetails(cardDetails.EmployeeId,
+                    cardDetails.FirstName,
+                    cardDetails.SecondName,
+                    cardDetails.MobileNumber);
+            }
+            catch (DbException e)
+            {
+                Console.WriteLine(e);
+                //return this.StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+            }
             
             return NoContent();
 
