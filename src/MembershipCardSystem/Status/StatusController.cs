@@ -14,7 +14,7 @@ namespace MembershipCardSystem.Status
     }
         
     [HttpGet]
-    [Route("/membershipcard/v1/_status")]
+    [Route("membershipcard/v1/_status")]
     public ActionResult GetStatus()
     {
         var health = new ApplicationHealth(_settings.Version, _settings.Environment, "OK");

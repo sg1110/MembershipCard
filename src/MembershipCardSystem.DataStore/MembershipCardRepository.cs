@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Dapper;
 using MembershipCardSystem.DataStore.Model;
@@ -27,9 +26,10 @@ namespace MembershipCardSystem.DataStore
 
         }
 
-        public async Task SaveRegistrationDetails(string employeeId, string firstName, string secondName,
-            string mobileNumber,
-            string cardId)
+        public async Task SaveRegistrationDetails(string employeeId, 
+            string firstName, 
+            string secondName,
+            string mobileNumber)
         {
             const string sprocName = "[dbo].[SaveCardDetailInformation]";
 
@@ -40,9 +40,18 @@ namespace MembershipCardSystem.DataStore
                 first_name = firstName,
                 second_name = secondName,
                 mobile_number = mobileNumber,
-                card_id = "2234567890123459"
+                card_id = RandomString(16)
 
             }, commandType: CommandType.StoredProcedure);
         }
+        
+        public static Random random = new Random();
+        public static string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
     }
 }

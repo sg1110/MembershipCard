@@ -13,21 +13,21 @@ namespace MembershipCardSystem.IntegrationTests.StatusTests
         {
             _system = app.SystemUnderTest;
         }
-        
+
         private Task<IScenarioResult> When_request_made()
         {
             return _system.Scenario(_ => _.Get.Url("/membershipcard/v1/_status"));
         }
-        
-        
-        [Fact ]
+
+
+        [Fact]
         public async Task Will_return_ok_response()
         {
             var response = await When_request_made();
 
             response.Context.Response.StatusCode.Should().Be(200);
         }
-        
+
         [Fact]
         public async Task Will_return_application_status()
         {
@@ -35,7 +35,7 @@ namespace MembershipCardSystem.IntegrationTests.StatusTests
 
             Assert.Equal("OK", response.ResponseBody.ReadAsJson<dynamic>().status.ToString());
         }
-        
+
         [Fact]
         public async Task Will_return_application_version()
         {
@@ -44,4 +44,5 @@ namespace MembershipCardSystem.IntegrationTests.StatusTests
             Assert.Equal("1.0.0", response.ResponseBody.ReadAsJson<dynamic>().version.ToString());
         }
     }
+
 }
