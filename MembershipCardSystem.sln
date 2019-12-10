@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MembershipCardSystem.Integr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MembershipCardSystem.DataStore.IntegrationTest", "tests\MembershipCardSystem.DataStore.IntegrationTest\MembershipCardSystem.DataStore.IntegrationTest.csproj", "{E77C1B1B-4BAD-4B0F-BE3C-22B10652704D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "tests\UnitTests\UnitTests.csproj", "{A38980DE-CC6F-4F98-9D88-DEA574324C95}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,7 @@ Global
 		{1209ACB4-2307-45BD-A467-3BE2EC24A50F} = {9C0ABAE2-0C2F-4D79-8EC2-38A453493B81}
 		{F8EE16E2-6D1B-43B2-A445-FD2ADA1EC14B} = {08377B84-BEC2-48B9-A2B2-C2D1D215BF2C}
 		{E77C1B1B-4BAD-4B0F-BE3C-22B10652704D} = {08377B84-BEC2-48B9-A2B2-C2D1D215BF2C}
+		{A38980DE-CC6F-4F98-9D88-DEA574324C95} = {08377B84-BEC2-48B9-A2B2-C2D1D215BF2C}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{69BD62AA-0F74-4435-8C11-3B5A751AD302}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -47,5 +50,9 @@ Global
 		{E77C1B1B-4BAD-4B0F-BE3C-22B10652704D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E77C1B1B-4BAD-4B0F-BE3C-22B10652704D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E77C1B1B-4BAD-4B0F-BE3C-22B10652704D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A38980DE-CC6F-4F98-9D88-DEA574324C95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A38980DE-CC6F-4F98-9D88-DEA574324C95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A38980DE-CC6F-4F98-9D88-DEA574324C95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A38980DE-CC6F-4F98-9D88-DEA574324C95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,4 +1,3 @@
-using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -20,20 +19,13 @@ namespace MembershipCardSystem.DataStore.IntegrationTest
         {
             _connection = new SqlConnection(ConnectionString);
             _dataStore = new MembershipCardRepository(_connection); 
-            ClearData();
-//            SetUpTestData();
+            ClearTestData();
         }
 
-        private void ClearData()
+        private void ClearTestData()
         {
             _connection.Execute("DELETE FROM [dbo].[Card] WHERE employee_id in ('Test2')");
         }
-//
-//        private void SetUpTestData()
-//        {
-//            _connection.Execute(
-//                "INSERT INTO [dbo].[Card] (employee_id, first_name, second_name, mobile_number, card_id) VALUES ('Test1', 'Name', 'Surname', '1234567890', 'cardID1')");
-//        }
 
         [Fact]
         public async Task Save_registration_details()
@@ -41,7 +33,6 @@ namespace MembershipCardSystem.DataStore.IntegrationTest
             await _dataStore.SaveRegistrationDetails("Test2", "2Name", "2Surname", "01234567890");
             
             var selectSql = "Select first_name from dbo.Card WHERE employee_id in ('Test2')";
-
             var result = await _connection.QueryAsync(selectSql);
             var justName = result.Select(x => x.first_name);
             
