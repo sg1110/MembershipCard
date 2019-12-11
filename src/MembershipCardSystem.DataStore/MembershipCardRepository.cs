@@ -48,13 +48,25 @@ namespace MembershipCardSystem.DataStore
 
         }
 
-        public Task VerifyCardDetails(string presentCardCardId, string presentCardPin)
+        public async Task<Card> VerifyCardRegistration(string cardId)
         {
+            const string sprocName = "[dbo].[CheckCardDetails]";
             
-            
-            throw new NotImplementedException();
-        }
+            var cardDetails = await _connection.QueryAsync(sprocName, new
+            {
+                card_id = cardId
+            }, commandType: CommandType.StoredProcedure);
 
+            var pin = cardDetails.Select(x => x.Pin).ToString();
+            var storedCardId = cardDetails.Select(x => x.CardId).ToString();
+
+            
+            return new Card(storedCardId, pin);
+        }
+        
+        
+        
+//To delete later because card if will be presented (ask for it in a body or route?)
         public static Random random = new Random();
         public static string RandomString(int length)
         {

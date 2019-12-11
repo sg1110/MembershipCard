@@ -3,7 +3,6 @@ using System.Data.SqlClient;
 using System.Net.Http;
 using System.Text;
 using Dapper;
-using MembershipCardSystem.DataStore;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 

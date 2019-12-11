@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using MembershipCardSystem.DataStore.Model;
 
 namespace MembershipCardSystem.DataStore
 {
@@ -11,7 +12,7 @@ namespace MembershipCardSystem.DataStore
             string firstName,
             string secondName,
             string mobileNumber);
-
-        Task VerifyCardDetails(string presentCardCardId, string presentCardPin);
+        
+        Task<Card> VerifyCardRegistration(string cardId);
     }
 }
