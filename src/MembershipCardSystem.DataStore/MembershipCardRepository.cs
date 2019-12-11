@@ -26,15 +26,15 @@ namespace MembershipCardSystem.DataStore
 
         }
 
-        public async Task SaveRegistrationDetails(string employeeId, 
-            string firstName, 
+        public async Task<IEnumerable<dynamic>> SaveRegistrationDetails(string employeeId,
+            string firstName,
             string secondName,
             string mobileNumber)
         {
             const string sprocName = "[dbo].[SaveCardDetailInformation]";
 
 
-            var result = await _connection.QueryAsync(sprocName, new
+            var cardDetailsAdded = await _connection.QueryAsync(sprocName, new
             {
                 employee_id = employeeId,
                 first_name = firstName,
@@ -43,8 +43,18 @@ namespace MembershipCardSystem.DataStore
                 card_id = RandomString(16)
 
             }, commandType: CommandType.StoredProcedure);
+
+            return cardDetailsAdded;
+
         }
-        
+
+        public Task VerifyCardDetails(string presentCardCardId, string presentCardPin)
+        {
+            
+            
+            throw new NotImplementedException();
+        }
+
         public static Random random = new Random();
         public static string RandomString(int length)
         {

@@ -6,10 +6,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Registration" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="AutoFixture" Version="4.11.0" />
       <PackageReference Include="AutoFixture.AutoMoq" Version="4.11.0" />
       <PackageReference Include="FluentAssertions" Version="5.9.0" />

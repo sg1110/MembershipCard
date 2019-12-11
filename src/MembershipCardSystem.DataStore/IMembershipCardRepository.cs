@@ -7,9 +7,11 @@ namespace MembershipCardSystem.DataStore
     {
         Task<IEnumerable<string>> GetAll();
 
-        Task SaveRegistrationDetails(string employeeId,
+        Task<IEnumerable<dynamic>> SaveRegistrationDetails(string employeeId,
             string firstName,
             string secondName,
             string mobileNumber);
+
+        Task VerifyCardDetails(string presentCardCardId, string presentCardPin);
     }
 }

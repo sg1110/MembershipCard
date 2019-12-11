@@ -20,6 +20,8 @@ namespace MembershipCardSystem.Registration
 
         [HttpPost]
         [Route("membershipcard/register")]
+ //       [SwaggerResponse(201, Description = "New card details have been registered")]
+
         public async Task<IActionResult> Add([FromBody] CardDetails cardDetails)
         {
             if (cardDetails == null)
@@ -42,18 +44,20 @@ namespace MembershipCardSystem.Registration
                     cardDetails.FirstName,
                     cardDetails.SecondName,
                     cardDetails.MobileNumber);
+                
+                return Created("", null);
             }
             catch (DbException e)
             {
-                Console.WriteLine(e);
-                //return this.StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+                Console.WriteLine(e.Message);
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
             }
             
-            return NoContent();
+     
 
         }
-
+        
+        
         [HttpGet]
         [Route("membershipcard/all")]
         public async Task<ActionResult> Get()

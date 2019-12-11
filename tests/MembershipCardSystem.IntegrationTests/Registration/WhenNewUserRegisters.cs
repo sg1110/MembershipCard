@@ -19,22 +19,9 @@ namespace MembershipCardSystem.IntegrationTests.Registration
 
         private Task<IScenarioResult> When_post_request_made()
         {
-
-//            var request =
-//                "{\"EmployeeId\": \"TestId12345\"," +
-//                "\"FirstName\": \"TestName\"," +
-//                "\"SecondName\": \"TestName\"," +
-//                "\"MobileNumber\": \"0123456789\"}";
-//            
-//            var nonsense = "string";
-//            
-//            var stringrequest = new StringContent(
-//                "{\"EmployeeId\": \"TestId1\",\"FirstName\": \"TestName\",\"SecondName\": \"TestName\",\"MobileNumber\": \"0123456789\"}",
-//                Encoding.UTF8, "application/json");
-            
             var requestModel = new CardDetails
             {
-                EmployeeId = "ID416",
+                EmployeeId = "IDSTUFF",
                 FirstName = "Name",
                 SecondName = "Surname",
                 MobileNumber = "01234"
@@ -47,12 +34,14 @@ namespace MembershipCardSystem.IntegrationTests.Registration
             
         }
         
-        [Fact]
+        [Fact (Skip = "Currently tested without alba")]
         public async Task Will_return_no_content_result()
         {
             var response = await When_post_request_made();
             
-            response.Context.Response.StatusCode.Should().Be(200);
+           // Assert.Equal(201, response.Context.Response.StatusCode);
+            
+            response.Context.Response.StatusCode.Should().Be(201);
         }
     }
 }

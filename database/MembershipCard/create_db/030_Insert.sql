@@ -1,12 +1,14 @@
+-- DB insert query for inserting test data (emoloyee_id and card_id must be unique)
+
 INSERT INTO [dbo].[Card]
 (employee_id, first_name, second_name, mobile_number, card_id)
 VALUES
-('ID2', 'TEST','mctest', '1234567890', (SELECT SUBSTRING(CONVERT(varchar(40), NEWID()),0,17)) )
+('ID2', 'TEST','mctest', '1234567890', '1234567890123456' )
 GO
 
 
 
-Create stored procedure for inserting customer details
+-- Create stored procedure for inserting customer details
 
 SET ANSI_NULLS ON
 GO

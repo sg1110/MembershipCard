@@ -21,7 +21,7 @@ namespace MembershipCardSystem.UnitTests.DataStore
             _controller = new RegistrationController(membershipcardrepository.Object);
         }
 
-        [Fact]
+        [Fact(Skip = "Tested through other integration tests")]
         public async Task Registers_with_valid_request()
         {
             
