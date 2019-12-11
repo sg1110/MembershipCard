@@ -63,22 +63,24 @@ namespace MembershipCardSystem.DataStore
             var dapperRow = cardDetails.FirstOrDefault();
             var allCardDetails= ((IDictionary<string, object>)dapperRow).Keys.ToArray();
             var details = ((IDictionary<string, object>)dapperRow);
-            var storedCardId = (details[allCardDetails[5]]).ToString();
-            var pin = (details[allCardDetails[6]]).ToString();
+            
+            var storedCardId = (details?[allCardDetails[5]])?.ToString();
+            var pin = (details?[allCardDetails[6]])?.ToString();
 
             var pinPresent = IsPinPresent(pin);
                             
             return new Card(storedCardId, pinPresent);
         }
 
-        public static bool IsPinPresent(string pin)
+        private static bool IsPinPresent(string pin)
         {
             return !string.IsNullOrEmpty(pin);
         }
         
 //To delete later because card if will be presented (ask for it in a body or route?)
-        public static Random random = new Random();
-        public static string RandomString(int length)
+        private static Random random = new Random();
+
+        private static string RandomString(int length)
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             return new string(Enumerable.Repeat(chars, length)

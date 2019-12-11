@@ -1,24 +1,21 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
-using Alba;
 using Dapper;
-using FluentAssertions;
 using MembershipCardSystem.Verify.Model;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
 using Xunit;
 
 namespace MembershipCardSystem.IntegrationTests.Verify
 {
-    public class WhenValidCardDetailPresented : TestBase
+    public class WhenCardIsRegisteredWithPin : TestBase
     {
         private readonly IDbConnection _connection;
 
         private const string ConnectionString = "Server=localhost,1433;Database=Membership_Card;User Id=sa;Password=reallyStrongPwd123";
 
-        public WhenValidCardDetailPresented(WebApplicationFactory<Startup> factory) : base(factory)
+        public WhenCardIsRegisteredWithPin(WebApplicationFactory<Startup> factory) : base(factory)
         {
             _connection = new SqlConnection(ConnectionString);
             ClearTestData();
@@ -48,7 +45,7 @@ namespace MembershipCardSystem.IntegrationTests.Verify
         }
 
         [Fact]
-        public async Task It_will_return_card_id_if_it_has_been_registered()
+        public async Task It_will_return_card_id()
         {
             var client = Factory.CreateClient();
             var response = await client.GetAsync("membershipcard/verify/1234aa7890123456");
@@ -70,11 +67,6 @@ namespace MembershipCardSystem.IntegrationTests.Verify
             var controllerResponse = JsonConvert.DeserializeObject<CardRegistrationStatusResult>(await response.Content.ReadAsStringAsync()); 
             
             Assert.True((bool) controllerResponse.PinPresent);
-            
-          //  ((CardRegistrationStatusResult) response.As<OkObjectResult>().Value).CardId.Should().Be("1234aa7890123456");
-
-            //Assert.Equal(true, (string) controllerResponse.pin);
-            
         }
        
     }

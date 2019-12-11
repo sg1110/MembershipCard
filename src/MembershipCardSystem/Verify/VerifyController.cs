@@ -25,10 +25,8 @@ namespace MembershipCardSystem.Verify
             try
             {
                 var result = await _cardrepository.VerifyCardRegistration(cardId);
-
-                bool pinPresent = result.Pin;
                 
-                return Ok(new CardRegistrationStatusResult(result.CardId, pinPresent));
+                return Ok(new CardRegistrationStatusResult(result.CardId, result.Pin));
             }
             catch (DbException e)
             { 
