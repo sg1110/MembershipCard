@@ -6,11 +6,11 @@ CREATE TABLE [dbo].[Card](
                              [first_name] [varchar](50) NOT NULL,
                              [second_name] [varchar](50) NOT NULL,
                              [mobile_number] [varchar](22) NOT NULL,
-                             [card_id] [varchar](16) UNIQUE NOT NULL
+                             [card_id] [varchar](16) UNIQUE NOT NULL,
+                             [pin] [varchar](4) NULL
 )
 GO
 
 
 USE [Membership_Card]
 GO
-
