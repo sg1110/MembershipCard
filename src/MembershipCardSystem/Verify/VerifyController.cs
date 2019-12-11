@@ -2,6 +2,7 @@ using System;
 using System.Data.Common;
 using System.Threading.Tasks;
 using MembershipCardSystem.DataStore;
+using MembershipCardSystem.Verify.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,7 +25,7 @@ namespace MembershipCardSystem.Verify
             try
             {
                 var result = await _cardrepository.VerifyCardRegistration(cardId);
-                return Ok(result);
+                return Ok(new CardRegistrationStatusResult(result.CardId));
             }
             catch (DbException e)
             { 

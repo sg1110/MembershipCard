@@ -43,6 +43,8 @@ namespace MembershipCardSystem.DataStore
                 card_id = RandomString(16)
 
             }, commandType: CommandType.StoredProcedure);
+            
+//            addsqlexception
 
             return cardDetailsAdded;
 
@@ -56,10 +58,14 @@ namespace MembershipCardSystem.DataStore
             {
                 card_id = cardId
             }, commandType: CommandType.StoredProcedure);
-
-            var pin = cardDetails.Select(x => x.Pin).ToString();
-            var storedCardId = cardDetails.Select(x => x.CardId).ToString();
-
+            
+            
+            var dapperRow = cardDetails.FirstOrDefault();
+            var allCardDetails= ((IDictionary<string, object>)dapperRow).Keys.ToArray();
+            var details = ((IDictionary<string, object>)dapperRow);
+            var storedCardId = (details[allCardDetails[5]]).ToString();
+            var pin = (details[allCardDetails[6]]).ToString();
+            
             
             return new Card(storedCardId, pin);
         }
