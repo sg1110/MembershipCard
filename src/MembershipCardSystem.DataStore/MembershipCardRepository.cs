@@ -58,10 +58,13 @@ namespace MembershipCardSystem.DataStore
             {
                 card_id = cardId
             }, commandType: CommandType.StoredProcedure);
+
+            if (cardDetails.Count() == 0) return new Card("", false);
             
             
+                
             var dapperRow = cardDetails.FirstOrDefault();
-            var allCardDetails= ((IDictionary<string, object>)dapperRow).Keys.ToArray();
+            var allCardDetails= ((IDictionary<string, object>)dapperRow)?.Keys.ToArray();
             var details = ((IDictionary<string, object>)dapperRow);
             
             var storedCardId = (details?[allCardDetails[5]])?.ToString();
@@ -71,6 +74,7 @@ namespace MembershipCardSystem.DataStore
                             
             return new Card(storedCardId, pinPresent);
         }
+        
 
         private static bool IsPinPresent(string pin)
         {

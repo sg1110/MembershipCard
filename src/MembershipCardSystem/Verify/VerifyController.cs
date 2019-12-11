@@ -1,5 +1,6 @@
 using System;
 using System.Data.Common;
+using System.Linq;
 using System.Threading.Tasks;
 using MembershipCardSystem.DataStore;
 using MembershipCardSystem.Verify.Model;
@@ -11,7 +12,7 @@ namespace MembershipCardSystem.Verify
     [ApiController]
     public class VerifyController  : ControllerBase
     {
-        private IMembershipCardRepository _cardrepository;
+        private readonly IMembershipCardRepository _cardrepository;
 
         public VerifyController(IMembershipCardRepository cardRepository)
         {
@@ -25,9 +26,14 @@ namespace MembershipCardSystem.Verify
             try
             {
                 var result = await _cardrepository.VerifyCardRegistration(cardId);
+
+                if (result.CardId.Any()) return Ok(new CardRegistrationStatusResult(result.CardId, result.Pin));
                 
-                return Ok(new CardRegistrationStatusResult(result.CardId, result.Pin));
+                return new NotFoundObjectResult(NotFound());
+
             }
+            
+            
             catch (DbException e)
             { 
                 Console.WriteLine(e);
