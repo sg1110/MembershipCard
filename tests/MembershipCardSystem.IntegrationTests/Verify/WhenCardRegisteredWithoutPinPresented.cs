@@ -50,6 +50,10 @@ namespace MembershipCardSystem.IntegrationTests.Verify
 
         }
 
-
+        [Fact]
+        public void It_will_return_false_for_registered_pin()
+        {
+            
+        }
     }
 }

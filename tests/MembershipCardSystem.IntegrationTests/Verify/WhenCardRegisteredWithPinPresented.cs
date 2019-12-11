@@ -51,7 +51,6 @@ namespace MembershipCardSystem.IntegrationTests.Verify
         public async Task It_will_return_card_id_if_it_has_been_registered()
         {
             var client = Factory.CreateClient();
-
             var response = await client.GetAsync("membershipcard/verify/1234aa7890123456");
             
             var controllerResponse = JsonConvert.DeserializeObject<dynamic>(await response.Content.ReadAsStringAsync()); 
@@ -60,6 +59,22 @@ namespace MembershipCardSystem.IntegrationTests.Verify
         
         //    ((CardRegistrationStatusResult) response.As<OkObjectResult>().Value).CardId.Should().Be("1234aa7890123456");
         
+        }
+
+        [Fact]
+        public async Task It_will_return_true_for_registered_pin()
+        {
+            var client = Factory.CreateClient();
+            var response = await client.GetAsync("membershipcard/verify/1234aa7890123456");
+            
+            var controllerResponse = JsonConvert.DeserializeObject<CardRegistrationStatusResult>(await response.Content.ReadAsStringAsync()); 
+            
+            Assert.True((bool) controllerResponse.PinPresent);
+            
+          //  ((CardRegistrationStatusResult) response.As<OkObjectResult>().Value).CardId.Should().Be("1234aa7890123456");
+
+            //Assert.Equal(true, (string) controllerResponse.pin);
+            
         }
        
     }
