@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Dapper;
 using MembershipCardSystem.DataStore.Model;
 
+
 namespace MembershipCardSystem.DataStore
 {
     public class MembershipCardRepository : IMembershipCardRepository
@@ -52,7 +53,7 @@ namespace MembershipCardSystem.DataStore
 
         public async Task<Card> VerifyCardRegistration(string cardId)
         {
-            const string sprocName = "[dbo].[CheckCardDetails]";
+            const string sprocName = "[dbo].[GetCardIdandPin]";
             
             var cardDetails = await _connection.QueryAsync(sprocName, new
             {
@@ -62,24 +63,25 @@ namespace MembershipCardSystem.DataStore
             if (cardDetails.Count() == 0) return new Card("", false);
             
             
-                
             var dapperRow = cardDetails.FirstOrDefault();
+            
             var allCardDetails= ((IDictionary<string, object>)dapperRow)?.Keys.ToArray();
             var details = ((IDictionary<string, object>)dapperRow);
             
-            var storedCardId = (details?[allCardDetails[5]])?.ToString();
-            var pin = (details?[allCardDetails[6]])?.ToString();
+            var storedCardId = (details?[allCardDetails[1]])?.ToString();
+            var pin = (details?[allCardDetails[0]])?.ToString();
 
             var pinPresent = IsPinPresent(pin);
                             
             return new Card(storedCardId, pinPresent);
         }
-        
+
 
         private static bool IsPinPresent(string pin)
         {
             return !string.IsNullOrEmpty(pin);
         }
+
         
 //To delete later because card if will be presented (ask for it in a body or route?)
         private static Random random = new Random();
