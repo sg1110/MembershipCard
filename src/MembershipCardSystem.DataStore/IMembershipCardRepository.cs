@@ -16,5 +16,7 @@ namespace MembershipCardSystem.DataStore
         Task<Card> VerifyCardRegistration(string cardId);
         
          Task<string> GetPin(string cardId);
+ 
+         Task<object> UpdateBalance(string cardId, int topUpAmount);
     }
 }

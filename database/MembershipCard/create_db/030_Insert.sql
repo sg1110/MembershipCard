@@ -14,7 +14,7 @@ VALUES
 GO
 
 --With pin and money
-INSERT INTO [dbo].[testing]
+INSERT INTO [dbo].[Card]
 (employee_id, first_name, second_name, mobile_number, card_id, pin, balance)
 VALUES
 ('Iadfaf1', 'TEST','mctest', '1234567890', '2dsf2', '1234' , 1)

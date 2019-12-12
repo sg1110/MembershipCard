@@ -94,8 +94,41 @@ namespace MembershipCardSystem.DataStore
 
         }
 
+        public Task<object> UpdateBalance(string cardId, int topUpAmount)
+        {
+            
+            //check for pin first
+            //get balance
+            //sum up
+            //return new balance
+            throw new NotImplementedException();
+        }
+
+
         
-        //helper functions, move to controller
+
+        private async Task<object> GetBalance(string cardId)
+        {
+            const string sprocName = "[dbo].[GetBalance]";
+
+            var cardBalance = await _connection.QueryAsync(sprocName, new
+            {
+                card_id = cardId
+            }, commandType: CommandType.StoredProcedure);
+            
+            var dapperRow = cardBalance.FirstOrDefault();
+            var cardDetails= ((IDictionary<string, object>)dapperRow)?.Keys.ToArray();
+            var details = ((IDictionary<string, object>)dapperRow);
+            
+            object balance = (details?[cardDetails[0]]);
+
+            return balance;
+            //return new CardBalance(balance);
+
+        }
+        
+
+        //helper functions, move to controller?
         private static bool IsPinPresent(string pin)
         {
             return !string.IsNullOrEmpty(pin);

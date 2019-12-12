@@ -2,14 +2,14 @@ namespace MembershipCardSystem.TopUp.Model
  {
      public class TopUpResponse
      {
-         public TopUpResponse(int amount, int balance)
+         public TopUpResponse(int topUpAmount, int balance)
          {
-             Amount = amount;
+             TopUpAmount = topUpAmount;
              Balance = balance;
          }
  
-         public int Balance { get; set; }
+         public int Balance { get; }
  
-         public int Amount { get; set; }
+         public int TopUpAmount { get; }
      }
  }

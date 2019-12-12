@@ -9,13 +9,6 @@ namespace MembershipCardSystem.TopUp.Model
         public string CardId { get; }
 
         [Required]
-        public int Amount { get; }
-        
-        public string Pin { get; set; }
-
-//        public TopUpRequest(string pin)
-//        {
-//            Pin = pin;
-//        }
+        public int TopUpAmount { get; }
     }
 }
