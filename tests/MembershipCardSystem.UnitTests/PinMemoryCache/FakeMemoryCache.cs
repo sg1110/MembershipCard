@@ -4,7 +4,7 @@ using Moq;
 
 namespace MembershipCardSystem.UnitTests.PinMemoryCache
 {
-    public class FakeMemoryCache
+    public class FakeMemoryCache : IMemoryCache
     {
         private Pin _cahedPin;
 

@@ -27,11 +27,11 @@ namespace MembershipCardSystem.LogIn
             return null;
         }
 
-        public bool IsTokenCached(string cardId)
-        {
-            var cacheKey = cardId;
-            return _memorycache.TryGetValue(cacheKey, out Pin cachedPin);
-        }
+//        public bool IsTokenCached(string cardId)
+//        {
+//            var cacheKey = cardId;
+//            return _memorycache.TryGetValue(cacheKey, out Pin cachedPin);
+//        }
 
 
         public void CachePin(string freshPin, string cacheKey)
