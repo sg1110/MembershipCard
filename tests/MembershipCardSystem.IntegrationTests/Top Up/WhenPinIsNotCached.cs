@@ -1,6 +1,6 @@
 namespace MembershipCardSystem.IntegrationTests.Top_Up
 {
-    public class WhenPinIsMissingAndIsCached
+    public class WhenPinIsNotCached
     {
         
     }
