@@ -36,10 +36,11 @@ namespace MembershipCardSystem.IntegrationTests.Registration
             
             
             var response = await client.PostAsync("membershipcard/register",
-                new StringContent(
-                    "{\"EmployeeId\": \"IDIntegrationTest3\"," +
-                    "\"FirstName\": \"TestName\"," +
-                    "\"SecondName\": \"TestName\"}",
+                new StringContent("{\"EmployeeId\": \"IDIntegrationTest\"," +
+                                  "\"FirstName\": \"TestName\"," +
+                                  "\"SecondName\": \"TestName\"," +
+                                  "\"MobileNumber\": \"0123456789901234567891234567890\"}"
+                    ,
                     Encoding.UTF8, "application/json"));
             
             Assert.Equal((HttpStatusCode) StatusCodes.Status400BadRequest, response.StatusCode);
@@ -53,10 +54,10 @@ namespace MembershipCardSystem.IntegrationTests.Registration
             
             
             var response = await client.PostAsync("membershipcard/register",
-                new StringContent(
-                    "{\"EmployeeId\": \"IDIntegrationTest3\"," +
-                    "\"FirstName\": \"TestName\"," +
-                    "\"SecondName\": \"TestName\"}",
+                new StringContent("{\"EmployeeId\": \"IDIntegrationTest\"," +
+                                  "\"FirstName\": \"TestName\"," +
+                                  "\"SecondName\": \"TestName\"," +
+                                  "\"MobileNumber\": \"0123456789901234567891234567890\"}",
                     Encoding.UTF8, "application/json"));
             
             
