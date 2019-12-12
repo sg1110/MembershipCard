@@ -1,10 +1,13 @@
 using System;
 using System.Data.Common;
+using System.Linq;
+using System.Runtime.Serialization.Json;
 using System.Threading.Tasks;
 using MembershipCardSystem.DataStore;
 using MembershipCardSystem.Registration.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace MembershipCardSystem.Registration
 {
@@ -24,18 +27,19 @@ namespace MembershipCardSystem.Registration
 
         public async Task<IActionResult> Add([FromBody] CardDetails cardDetails)
         {
+            //is this still needed?
             if (cardDetails == null)
             {
                 return BadRequest("Request body is empty");
                 
             }
-//            if (!ModelState.IsValid)
+//            if (!ModelState.IsValid), doesnt add anything
 //            {
 //                var errors = ModelState.Select(x => x.Value.Errors)
 //                    .Where(y => y.Count > 0)
 //                    .ToList();
 //                
-//                return BadRequest(errors);
+//                return Ok(errors);
 //            }
 
             try
@@ -50,7 +54,16 @@ namespace MembershipCardSystem.Registration
             catch (DbException e)
             {
                 Console.WriteLine(e.Message);
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+
+                if (e.Message.Contains("Cannot insert duplicate key in object 'dbo.Card").Equals(true))
+                {
+                    var errorMessage = "Employee ID is already registered";
+                    var x = new JsonResult(errorMessage);
+                    return StatusCode(StatusCodes.Status500InternalServerError, x);
+
+                }
+                
+                return StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
             }
             
      
