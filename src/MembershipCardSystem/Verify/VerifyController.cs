@@ -37,7 +37,7 @@ namespace MembershipCardSystem.Verify
             catch (DbException e)
             { 
                 Console.WriteLine(e);
-                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
 
             }
         }
