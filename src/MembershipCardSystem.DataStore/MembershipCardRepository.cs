@@ -77,14 +77,20 @@ namespace MembershipCardSystem.DataStore
 
         public async Task<string> GetPin(string cardId)
         {
-            const string sprocName = "[dbo].[GetCardPin]";
+            const string sprocName = "[dbo].[GetCardIdandPin]";
 
-            var cardPin = await _connection.QueryAsync(sprocName, new
+            var cardDetails = await _connection.QueryAsync(sprocName, new
             {
                 card_id = cardId
             }, commandType: CommandType.StoredProcedure);
 
-            return cardPin.ToString();
+            var dapperRow = cardDetails.FirstOrDefault();
+            var allCardDetails= ((IDictionary<string, object>)dapperRow)?.Keys.ToArray();
+            var details = ((IDictionary<string, object>)dapperRow);
+            
+            var pin = (details?[allCardDetails[0]])?.ToString();
+
+            return pin;
 
         }
 
