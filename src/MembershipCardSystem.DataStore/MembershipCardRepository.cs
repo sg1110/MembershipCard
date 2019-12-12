@@ -51,6 +51,7 @@ namespace MembershipCardSystem.DataStore
 
         }
 
+        //Fix below so it only returns pin and id and it checks at the controller if its ok
         public async Task<Card> VerifyCardRegistration(string cardId)
         {
             const string sprocName = "[dbo].[GetCardIdandPin]";
@@ -62,9 +63,7 @@ namespace MembershipCardSystem.DataStore
 
             if (cardDetails.Count() == 0) return new Card("", false);
             
-            
             var dapperRow = cardDetails.FirstOrDefault();
-            
             var allCardDetails= ((IDictionary<string, object>)dapperRow)?.Keys.ToArray();
             var details = ((IDictionary<string, object>)dapperRow);
             
@@ -76,7 +75,21 @@ namespace MembershipCardSystem.DataStore
             return new Card(storedCardId, pinPresent);
         }
 
+        public async Task<string> GetPin(string cardId)
+        {
+            const string sprocName = "[dbo].[GetCardPin]";
 
+            var cardPin = await _connection.QueryAsync(sprocName, new
+            {
+                card_id = cardId
+            }, commandType: CommandType.StoredProcedure);
+
+            return cardPin.ToString();
+
+        }
+
+        
+        //helper functions, move to controller
         private static bool IsPinPresent(string pin)
         {
             return !string.IsNullOrEmpty(pin);

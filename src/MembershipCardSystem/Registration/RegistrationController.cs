@@ -15,6 +15,8 @@ namespace MembershipCardSystem.Registration
     public class RegistrationController : ControllerBase
     {
         private IMembershipCardRepository _cardRepository;
+        private const string ErrorMessage = "Employee ID is already registered";
+
 
         public RegistrationController(IMembershipCardRepository cardRepository)
         {
@@ -53,13 +55,10 @@ namespace MembershipCardSystem.Registration
             }
             catch (DbException e)
             {
-                Console.WriteLine(e.Message);
-
                 if (e.Message.Contains("Cannot insert duplicate key in object 'dbo.Card").Equals(true))
                 {
-                    var errorMessage = "Employee ID is already registered";
-                    var x = new JsonResult(errorMessage);
-                    return StatusCode(StatusCodes.Status500InternalServerError, x);
+                    var jsonErrorMessage = new JsonResult(ErrorMessage);
+                    return StatusCode(StatusCodes.Status500InternalServerError, jsonErrorMessage);
 
                 }
                 
@@ -87,8 +86,6 @@ namespace MembershipCardSystem.Registration
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
             }
         }
-        
-        
 
     }
 }

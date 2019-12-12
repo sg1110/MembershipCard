@@ -1,7 +1,10 @@
-namespace MembershipCardSystem.UnitTests.PinMemoryCache
-{
-    public class WhenPinIsNotCached
-    {
-        
-    }
-}
+//namespace MembershipCardSystem.UnitTests.PinMemoryCache
+//{
+//    public class WhenPinIsNotCached
+//    {
+//        public WhenPinIsNotCached(Pin pin)
+//        {
+//            
+//        }
+//    }
+//}
