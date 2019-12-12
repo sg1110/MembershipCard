@@ -12,13 +12,13 @@ namespace MembershipCardSystem.LogIn
     public class LogInController : ControllerBase
     {
         private readonly IMembershipCardRepository _cardrepository;
-    //    private CachingPin _cachingPin;
+        private CachingPin _cachingPin;
         private const string ErrorMessage = "Employee ID is already registered";
 
-        public LogInController(IMembershipCardRepository cardRepository)//,  CachingPin cachingPin)
+        public LogInController(IMembershipCardRepository cardRepository,  CachingPin cachingPin)
         {
             _cardrepository = cardRepository;
-          //  _cachingPin = cachingPin;
+            _cachingPin = cachingPin;
         }
 
         [HttpPost]
@@ -34,10 +34,10 @@ namespace MembershipCardSystem.LogIn
                     return storedPin == requestPin;
                 }
 
-//                if (IsPinCorrect(currentPin, logInRequest.CardPin))
-//                {
-//                    _cachingPin.CachePin(logInRequest.CardPin, logInRequest.CardId);
-//                };
+                if (IsPinCorrect(currentPin, logInRequest.CardPin))
+                {
+                    _cachingPin.CachePin(logInRequest.CardPin, logInRequest.CardId);
+                };
 
                 if (!IsPinCorrect(currentPin, logInRequest.CardPin))
                 {
@@ -55,7 +55,7 @@ namespace MembershipCardSystem.LogIn
                     return StatusCode(StatusCodes.Status500InternalServerError, jsonErrorMessage);
 
                 }
-                
+                Console.WriteLine(e);
                 return StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
 
             }
