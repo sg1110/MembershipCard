@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace MembershipCardSystem.DataStore.Model
 {
     public class Card
