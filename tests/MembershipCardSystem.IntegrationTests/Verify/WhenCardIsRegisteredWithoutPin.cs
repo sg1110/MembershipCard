@@ -53,9 +53,9 @@ namespace MembershipCardSystem.IntegrationTests.Verify
             var client = Factory.CreateClient();
             var response = await client.GetAsync("membershipcard/verify/ID34567890123456");
             
-            var controllerResponse = JsonConvert.DeserializeObject<dynamic>(await response.Content.ReadAsStringAsync()); 
+            var controllerResponse = JsonConvert.DeserializeObject<CardRegistrationStatusResult>(await response.Content.ReadAsStringAsync()); 
             
-            Assert.Equal("ID34567890123456", (string) controllerResponse.cardId);
+            Assert.Equal("ID34567890123456", (string) controllerResponse.CardId);
 
         }
 

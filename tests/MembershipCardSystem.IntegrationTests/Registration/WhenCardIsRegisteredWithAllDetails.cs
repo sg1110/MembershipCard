@@ -8,13 +8,13 @@ using Xunit;
 
 namespace MembershipCardSystem.IntegrationTests.Registration
 {
-    public class WhenStatusRequestIsMadeNoAlba : TestBase
+    public class WhenCardIsRegisteredWithAllDetails : TestBase
     {
         private readonly IDbConnection _connection;
 
         private const string ConnectionString = "Server=localhost,1433;Database=Membership_Card;User Id=sa;Password=reallyStrongPwd123";
 
-        public WhenStatusRequestIsMadeNoAlba(WebApplicationFactory<Startup> factory) : base(factory)
+        public WhenCardIsRegisteredWithAllDetails(WebApplicationFactory<Startup> factory) : base(factory)
         {
             _connection = new SqlConnection(ConnectionString);
             ClearTestData();
