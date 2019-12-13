@@ -72,11 +72,11 @@ namespace MembershipCardSystem
             app.UseMvc();
             
             
-            app.UseSwagger(c => c.RouteTemplate = "membershipcard/{documentName}/_interface")
+            app.UseSwagger(c => c.RouteTemplate = "card/{documentName}/_interface")
                 .UseSwaggerUI(c =>
                 {
-                    c.RoutePrefix = "membershipcard/swagger";
-                    c.SwaggerEndpoint("/membershipcard/v1/_interface", "Membership Card v1");
+                    c.RoutePrefix = "card/swagger";
+                    c.SwaggerEndpoint("/card/v1/_interface", "Membership Card v1");
                 });
         }
 

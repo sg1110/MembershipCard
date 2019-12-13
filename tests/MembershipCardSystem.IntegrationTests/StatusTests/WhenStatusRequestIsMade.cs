@@ -16,7 +16,7 @@ namespace MembershipCardSystem.IntegrationTests.StatusTests
 
         private Task<IScenarioResult> When_request_made()
         {
-            return _system.Scenario(_ => _.Get.Url("/membershipcard/v1/_status"));
+            return _system.Scenario(_ => _.Get.Url("/card/v1/_status"));
         }
 
 

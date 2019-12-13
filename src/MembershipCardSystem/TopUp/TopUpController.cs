@@ -25,7 +25,7 @@ namespace MembershipCardSystem.TopUp
         }
 
         [HttpPut]
-        [Route("membershipcard/topup/{cardId}")]
+        [Route("card/topup/{cardId}")]
         [SwaggerOperation("Allows to top up card balance by specified amount")]
         [SwaggerResponse(500, Description = "Unexpected database failure")]
         [SwaggerResponse(200, Description = "Card balance has been increased")]

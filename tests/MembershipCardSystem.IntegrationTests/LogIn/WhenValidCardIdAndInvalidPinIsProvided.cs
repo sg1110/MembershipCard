@@ -41,7 +41,7 @@ namespace MembershipCardSystem.IntegrationTests.LogIn
         { 
             var client = Factory.CreateClient();
           
-            var response = await client.PostAsync("membershipcard/login",
+            var response = await client.PostAsync("card/login",
                 new StringContent(
                     "{\"CardId\": \"1234cc7890123456\"," +
                     "\"CardPin\": \"4444\",}",

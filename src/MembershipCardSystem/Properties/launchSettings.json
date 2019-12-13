@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "membershipcard/v1/_status",
+      "launchUrl": "card/v1/_status",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -20,7 +20,7 @@
     "MembershipCardSystem": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "membershipcard/v1/_status",
+      "launchUrl": "card/v1/_status",
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

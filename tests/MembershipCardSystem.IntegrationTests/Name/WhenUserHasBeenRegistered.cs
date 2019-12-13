@@ -43,7 +43,7 @@ namespace MembershipCardSystem.IntegrationTests.Name
         {
             var client = Factory.CreateClient();
 
-            var response = await client.GetAsync("membershipcard/name/123sdd7890123456)");;
+            var response = await client.GetAsync("card/name/123sdd7890123456)");;
             
             response.EnsureSuccessStatusCode();
 
@@ -54,7 +54,7 @@ namespace MembershipCardSystem.IntegrationTests.Name
         { 
             var client = Factory.CreateClient();
 
-            var response = await client.GetAsync("membershipcard/name/123sdd7890123456");
+            var response = await client.GetAsync("card/name/123sdd7890123456");
             var controllerResponse = JsonConvert.DeserializeObject<NameResponse>(await response.Content.ReadAsStringAsync()); 
             
             Assert.Equal("Tester", controllerResponse.UserName);

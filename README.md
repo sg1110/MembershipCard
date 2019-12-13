@@ -69,4 +69,4 @@ log out
 reg error does not return error message caught so it doesnt expose user id or card id in the message when saying what is not found
 
 swagger
-https://localhost:5001/membershipcard/swagger/index.html
+https://localhost:5001/card/swagger/index.html

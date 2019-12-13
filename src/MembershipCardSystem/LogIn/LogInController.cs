@@ -23,7 +23,7 @@ namespace MembershipCardSystem.LogIn
         }
 
         [HttpPost]
-        [Route("membershipcard/login")]
+        [Route("card/login")]
         [SwaggerOperation("Authenticates card PIN against cards ID, stores pin in memory cache for 10 minutes")]
         [SwaggerResponse(204, "The card has been logged in")]
         [SwaggerResponse(403, "The provided details are not valid")]

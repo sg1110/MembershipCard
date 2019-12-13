@@ -39,7 +39,7 @@ namespace MembershipCardSystem.IntegrationTests.Top_Up
 
         private static async Task LogIn(HttpClient client)
         {
-            await client.PostAsync("membershipcard/login",
+            await client.PostAsync("card/login",
                 new StringContent(
                     "{\"CardId\": \"1234dd7890123456\"," +
                     "\"CardPin\": \"1234\",}",
@@ -52,7 +52,7 @@ namespace MembershipCardSystem.IntegrationTests.Top_Up
             var client = Factory.CreateClient();
             await LogIn(client);
           
-            var response = await client.PutAsync("membershipcard/topup/1234dd7890123456",
+            var response = await client.PutAsync("card/topup/1234dd7890123456",
                 new StringContent(
                     "{\"TopUpAmount\": \"100\",}",
                     Encoding.UTF8, "application/json"));;
@@ -68,7 +68,7 @@ namespace MembershipCardSystem.IntegrationTests.Top_Up
             
             await LogIn(client);
           
-            var response = await client.PutAsync("membershipcard/topup/1234dd7890123456",
+            var response = await client.PutAsync("card/topup/1234dd7890123456",
                 new StringContent(
                     "{\"TopUpAmount\": \"100.10\",}",
                     Encoding.UTF8, "application/json"));

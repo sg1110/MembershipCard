@@ -8,7 +8,7 @@ namespace MembershipCardSystem.LogOut
     public class LogOutController : ControllerBase
     {
         [HttpGet]
-        [Route("membershipcard/logout")]
+        [Route("card/logout")]
         [Produces("application/json")]
         [SwaggerRequestExample(typeof(LogOutResponse), typeof(LogOutResponseModelExample))]
         public OkObjectResult LogOutMessage()

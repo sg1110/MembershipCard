@@ -20,7 +20,7 @@ namespace MembershipCardSystem.IntegrationTests.Verify
         {
             var client = Factory.CreateClient();
 
-            var response = await client.GetAsync("membershipcard/verify/randomID");
+            var response = await client.GetAsync("card/verify/randomID");
             
             Assert.Equal((HttpStatusCode) StatusCodes.Status404NotFound, response.StatusCode);
         }

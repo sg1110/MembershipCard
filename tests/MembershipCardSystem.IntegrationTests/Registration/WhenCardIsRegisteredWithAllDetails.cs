@@ -31,7 +31,7 @@ namespace MembershipCardSystem.IntegrationTests.Registration
         {
             var client = Factory.CreateClient();
 
-            var response = await client.PostAsync("membershipcard/register",
+            var response = await client.PostAsync("card/register",
                 new StringContent(
                     "{\"EmployeeId\": \"IdIdId1\"," +
                     "\"FirstName\": \"TestName\"," +

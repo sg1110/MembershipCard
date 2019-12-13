@@ -23,7 +23,7 @@ namespace MembershipCardSystem.Name
         }
 
         [HttpGet]
-        [Route("membershipcard/name/{cardId}")]
+        [Route("card/name/{cardId}")]
         [SwaggerOperation("Retrieves name associated with provided card id")]
         [SwaggerResponse(200, "Name has been retrieved successfully")]
         [SwaggerResponse(404, "Card id provided does not exisr")]

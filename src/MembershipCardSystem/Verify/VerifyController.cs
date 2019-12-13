@@ -21,7 +21,7 @@ namespace MembershipCardSystem.Verify
         }
 
         [HttpGet]
-        [Route("membershipcard/verify/{cardId}")]
+        [Route("card/verify/{cardId}")]
         [SwaggerOperation("Returns cardId if it has been registered, informs if pin is present")]
         [SwaggerResponse(404, "Card has not been registered")]
         [SwaggerResponse(200, "Card has been registered")]

@@ -40,7 +40,7 @@ namespace MembershipCardSystem.IntegrationTests.Verify
         {
             var client = Factory.CreateClient();
 
-            var response = await client.GetAsync("membershipcard/verify/1234aa7890123456");
+            var response = await client.GetAsync("card/verify/1234aa7890123456");
                 response.EnsureSuccessStatusCode();
         }
 
@@ -48,7 +48,7 @@ namespace MembershipCardSystem.IntegrationTests.Verify
         public async Task It_will_return_card_id()
         {
             var client = Factory.CreateClient();
-            var response = await client.GetAsync("membershipcard/verify/1234aa7890123456");
+            var response = await client.GetAsync("card/verify/1234aa7890123456");
             
             var controllerResponse = JsonConvert.DeserializeObject<dynamic>(await response.Content.ReadAsStringAsync()); 
             
@@ -62,7 +62,7 @@ namespace MembershipCardSystem.IntegrationTests.Verify
         public async Task It_will_return_true_for_registered_pin()
         {
             var client = Factory.CreateClient();
-            var response = await client.GetAsync("membershipcard/verify/1234aa7890123456");
+            var response = await client.GetAsync("card/verify/1234aa7890123456");
             
             var controllerResponse = JsonConvert.DeserializeObject<CardRegistrationVerificationResult>(await response.Content.ReadAsStringAsync()); 
             
