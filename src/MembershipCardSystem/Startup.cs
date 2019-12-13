@@ -35,8 +35,7 @@ namespace MembershipCardSystem
             
             services.AddSingleton<IMemoryCache>( _ =>new MemoryCache(new MemoryCacheOptions
             {
-                ExpirationScanFrequency = TimeSpan.FromSeconds(10),
-                CompactionPercentage = 0.75
+                ExpirationScanFrequency = TimeSpan.FromSeconds(10)
             }));
 
             services.AddSingleton<CachingPin>();

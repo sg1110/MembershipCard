@@ -14,7 +14,7 @@ namespace MembershipCardSystem.TopUp
     {
         private readonly IMembershipCardRepository _cardRepository;
         private CachingPin _cachingPin;
-        private const string ErrorMessage = "Employee ID is already registered";
+        private const string ErrorMessage = "One or more validation errors occurred";
 
 
         public TopUpController(IMembershipCardRepository cardRepository, CachingPin cachingPin)
@@ -28,26 +28,28 @@ namespace MembershipCardSystem.TopUp
 
         public async Task<IActionResult> Add(string cardId,[FromBody] TopUpRequest topUpRequest)
         {
-            try
+            if (!_cachingPin.IsPinCached(cardId)) return Unauthorized();
             {
-             //  var result = await _cardRepository.UpdateBalance(cardId, topUpRequest.TopUpAmount);
-                
-                return Ok(new TopUpResponse(1, 1));
-            }
-            
-            catch (DbException e)
-            { 
-                if (e.Message.Contains("Cannot insert duplicate key in object 'dbo.Card").Equals(true))
+                try
                 {
-                    var jsonErrorMessage = new JsonResult(ErrorMessage);
-                    return StatusCode(StatusCodes.Status500InternalServerError, jsonErrorMessage);
+                    //   var result = await _cardRepository.UpdateBalance(cardId, topUpRequest.TopUpAmount);
 
+                    return Ok(new TopUpResponse(1, 1));
                 }
-                Console.WriteLine(e);
-                return StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
 
+                catch (DbException e)
+                {
+                    if (e.Message.Contains(ErrorMessage).Equals(true))
+                    {
+                        return StatusCode(StatusCodes.Status400BadRequest, e);
+
+                    }
+
+                    return StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+                }
             }
-            
+
+            return Unauthorized();
         }
     }
 }

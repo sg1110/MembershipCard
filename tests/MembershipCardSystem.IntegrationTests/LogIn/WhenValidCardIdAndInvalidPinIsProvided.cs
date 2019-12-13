@@ -37,7 +37,7 @@ namespace MembershipCardSystem.IntegrationTests.LogIn
         }
 
         [Fact]
-        public async void Will_return_no_content()
+        public async void Will_return_unauthorized()
         { 
             var client = Factory.CreateClient();
           
