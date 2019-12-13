@@ -1,11 +1,9 @@
 using System.Data;
 using System.Data.SqlClient;
-using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 
@@ -44,10 +42,9 @@ namespace MembershipCardSystem.IntegrationTests.Top_Up
             
          //   await LogIn(client);
           
-            var response = await client.PutAsync("membershipcard/topup",
+            var response = await client.PutAsync("membershipcard/topup/1234dd7890123456",
                 new StringContent(
-                    "{\"CardId\": \"1234dd7890123456\"," +
-                    "\"TopUpAmount\": {100},}",
+                    "{\"TopUpAmount\": 100,}",
                     Encoding.UTF8, "application/json"));;
             
             response.EnsureSuccessStatusCode();

@@ -5,6 +5,8 @@ using MembershipCardSystem.DataStore;
 using MembershipCardSystem.LogIn.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
+using Swashbuckle.AspNetCore.Examples;
 
 namespace MembershipCardSystem.LogIn
 {
@@ -13,7 +15,7 @@ namespace MembershipCardSystem.LogIn
     {
         private readonly IMembershipCardRepository _cardrepository;
         private CachingPin _cachingPin;
-        private const string ErrorMessage = "Employee ID is already registered";
+        private const string ErrorMessage = "Missing required field";
 
         public LogInController(IMembershipCardRepository cardRepository,  CachingPin cachingPin)
         {
@@ -23,6 +25,11 @@ namespace MembershipCardSystem.LogIn
 
         [HttpPost]
         [Route("membershipcard/login")]
+        [SwaggerOperation("Log in users card ")]
+        [SwaggerResponse(204, "The card has been logged in")]
+        [SwaggerResponse(400, ErrorMessage)]
+        [SwaggerRequestExample(typeof(LogInRequest), typeof(LogInRequestModelExample))]
+
         public async Task<IActionResult> LogIn([FromBody] LogInRequest logInRequest)
         {
             try
@@ -49,10 +56,10 @@ namespace MembershipCardSystem.LogIn
 
             catch (DbException e)
             { 
-                if (e.Message.Contains("Cannot insert duplicate key in object 'dbo.Card").Equals(true))
+                if (e.Message.Contains("One or more validation errors occurred").Equals(true))
                 {
-                    var jsonErrorMessage = new JsonResult(ErrorMessage);
-                    return StatusCode(StatusCodes.Status500InternalServerError, jsonErrorMessage);
+                    var jsonErrorMessage = new JsonResult(e.Message);
+                    return StatusCode(StatusCodes.Status400BadRequest, jsonErrorMessage);
 
                 }
                 Console.WriteLine(e);

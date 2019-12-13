@@ -24,13 +24,13 @@ namespace MembershipCardSystem.TopUp
         }
 
         [HttpPut]
-        [Route("membershipcard/topup")]
+        [Route("membershipcard/topup/{cardId}")]
 
-        public async Task<IActionResult> Add([FromBody] TopUpRequest topUpRequest)
+        public async Task<IActionResult> Add(string cardId,[FromBody] TopUpRequest topUpRequest)
         {
             try
             {
-              //  var result = await _cardRepository.UpdateBalance(topUpRequest.CardId, topUpRequest.TopUpAmount);
+             //  var result = await _cardRepository.UpdateBalance(cardId, topUpRequest.TopUpAmount);
                 
                 return Ok(new TopUpResponse(1, 1));
             }

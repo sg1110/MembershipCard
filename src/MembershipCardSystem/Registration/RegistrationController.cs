@@ -35,15 +35,7 @@ namespace MembershipCardSystem.Registration
                 return BadRequest("Request body is empty");
                 
             }
-//            if (!ModelState.IsValid), doesnt add anything
-//            {
-//                var errors = ModelState.Select(x => x.Value.Errors)
-//                    .Where(y => y.Count > 0)
-//                    .ToList();
-//                
-//                return Ok(errors);
-//            }
-
+            
             try
             {
                 await _cardRepository.SaveRegistrationDetails(cardDetails.EmployeeId,

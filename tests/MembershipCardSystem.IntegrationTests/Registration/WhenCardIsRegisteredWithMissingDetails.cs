@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using Dapper;
 using MembershipCardSystem.Verify.Model;
 using Microsoft.AspNetCore.Http;
@@ -30,37 +31,36 @@ namespace MembershipCardSystem.IntegrationTests.Registration
             _connection.Execute("DELETE FROM [dbo].[Card] WHERE employee_id in ('IDIntegrationTest2')");
         }
         
-        [Fact]
-        public async void When_phone_number_is_missing_will_return_bad_request()
+        private async Task<HttpResponseMessage> RegisterTestUser()
         {
             var client = Factory.CreateClient();
-            
-            
+
+
             var response = await client.PostAsync("membershipcard/register",
                 new StringContent(
                     "{\"EmployeeId\": \"IDIntegrationTest2\"," +
                     "\"FirstName\": \"TestName\"," +
                     "\"SecondName\": \"TestName\"}",
                     Encoding.UTF8, "application/json"));
-            
-            Assert.Equal((HttpStatusCode) StatusCodes.Status400BadRequest, response.StatusCode);
+            return response;
         }
         
+        [Fact]
+        public async void When_phone_number_is_missing_will_return_bad_request()
+        {
+            var response = await RegisterTestUser();
+
+            Assert.Equal((HttpStatusCode) StatusCodes.Status400BadRequest, response.StatusCode);
+        }
+
+  
+
         //Provide own error model to remove dynamic call?
         [Fact]
         public async void When_phone_number_is_missing_will_return_validation_error()
         {
-            var client = Factory.CreateClient();
-            
-            
-            var response = await client.PostAsync("membershipcard/register",
-                new StringContent(
-                    "{\"EmployeeId\": \"IDIntegrationTest2\"," +
-                    "\"FirstName\": \"TestName\"," +
-                    "\"SecondName\": \"TestName\"}",
-                    Encoding.UTF8, "application/json"));
-            
-            
+            var response = await RegisterTestUser();
+
             var controllerResponse = JsonConvert.DeserializeObject<dynamic>(await response.Content.ReadAsStringAsync()); 
 
             Assert.Equal("The MobileNumber field is required.", (string) controllerResponse.errors.MobileNumber[0]);

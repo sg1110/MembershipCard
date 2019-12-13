@@ -18,7 +18,7 @@ namespace MembershipCardSystem.LogIn
         public async Task<Pin> IssueCachedPin(string cardId)
         {
             var cacheKey = cardId;
-
+            
             if (_memorycache.TryGetValue(cacheKey, out Pin cachedPin))
             {
                 return cachedPin;
@@ -27,11 +27,11 @@ namespace MembershipCardSystem.LogIn
             return null;
         }
 
-//        public bool IsTokenCached(string cardId)
-//        {
-//            var cacheKey = cardId;
-//            return _memorycache.TryGetValue(cacheKey, out Pin cachedPin);
-//        }
+        public bool IsTokenCached(string cardId)
+        {
+            var cacheKey = cardId;
+            return _memorycache.TryGetValue(cacheKey, out Pin cachedPin);
+        }
 
 
         public void CachePin(string freshPin, string cacheKey)

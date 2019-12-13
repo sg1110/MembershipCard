@@ -12,10 +12,10 @@ namespace MembershipCardSystem.LogIn.Model
 
         [Required] 
         [StringLength(16)]
-        public string CardId { get; }
+        public string CardId { get;  }
 
         [Required]
         [StringLength(4)]
-        public string CardPin { get; }
+        public string CardPin { get;  }
     }
 }
