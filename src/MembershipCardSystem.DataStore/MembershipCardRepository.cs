@@ -46,7 +46,6 @@ namespace MembershipCardSystem.DataStore
             }, commandType: CommandType.StoredProcedure);
         }
 
-        //Fix below so it only returns pin and id and it checks at the controller if its ok
         public async Task<Card> VerifyCardRegistration(string cardId)
         {
             const string sprocName = "[dbo].[GetCardIdandPin]";

@@ -23,7 +23,7 @@ namespace MembershipCardSystem.Registration
 
         [HttpPost]
         [Route("membershipcard/register")]
-        [SwaggerOperation("Register new card into the membership card system")]
+        [SwaggerOperation("Registers new card into the membership card system")]
         [SwaggerResponse(200, Description = "New card details have been registered")]
         [SwaggerResponse(400, Description = "Required information is missing in the request")]
         [SwaggerResponse(500, Description = "Unexpected database failure")]

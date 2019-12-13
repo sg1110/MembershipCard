@@ -14,8 +14,7 @@ namespace MembershipCardSystem.LogIn
     public class LogInController : ControllerBase
     {
         private readonly IMembershipCardRepository _cardrepository;
-        private CachingPin _cachingPin;
-        private const string ErrorMessage = "Missing required field";
+        private readonly CachingPin _cachingPin;
 
         public LogInController(IMembershipCardRepository cardRepository,  CachingPin cachingPin)
         {
@@ -28,7 +27,7 @@ namespace MembershipCardSystem.LogIn
         [SwaggerOperation("Authenticates card PIN against cards ID, stores pin in memory cache for 10 minutes")]
         [SwaggerResponse(204, "The card has been logged in")]
         [SwaggerResponse(403, "The provided details are not valid")]
-        [SwaggerResponse(400, ErrorMessage)]
+        [SwaggerResponse(400, "Missing required field")]
         [SwaggerResponse(500, Description = "Unexpected database failure")]
         [SwaggerRequestExample(typeof(LogInRequest), typeof(LogInRequestModelExample))]
 

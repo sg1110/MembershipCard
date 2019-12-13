@@ -56,6 +56,17 @@ WIP WIP WIP WIP
 
 
 Other notes
+dependencies - timeouts should be on dependencies! because of network and stuff
+
 
 Status endpoint
 - Not documented as it's primary use is for API monitoring purposes (example - Runscope)
+
+log out
+- currently get because it doesnt do anything, proper log out - post to identity to invaldiate token?, seems like a waste to call an api for a string......
+
+
+reg error does not return error message caught so it doesnt expose user id or card id in the message when saying what is not found
+
+swagger
+https://localhost:5001/membershipcard/swagger/index.html

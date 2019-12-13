@@ -2,7 +2,7 @@ using Swashbuckle.AspNetCore.Examples;
 
 namespace MembershipCardSystem.LogIn.Model
 {
-    public class LogInRequestModelExample: IExamplesProvider
+    public class LogInRequestModelExample : IExamplesProvider
     {
         public object GetExamples()
         {

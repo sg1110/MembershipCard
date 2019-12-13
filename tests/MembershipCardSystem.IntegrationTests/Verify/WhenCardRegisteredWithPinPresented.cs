@@ -64,7 +64,7 @@ namespace MembershipCardSystem.IntegrationTests.Verify
             var client = Factory.CreateClient();
             var response = await client.GetAsync("membershipcard/verify/1234aa7890123456");
             
-            var controllerResponse = JsonConvert.DeserializeObject<CardRegistrationStatusResult>(await response.Content.ReadAsStringAsync()); 
+            var controllerResponse = JsonConvert.DeserializeObject<CardRegistrationVerificationResult>(await response.Content.ReadAsStringAsync()); 
             
             Assert.True((bool) controllerResponse.PinPresent);
         }

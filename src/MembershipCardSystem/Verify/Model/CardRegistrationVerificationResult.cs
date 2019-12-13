@@ -1,8 +1,8 @@
 namespace MembershipCardSystem.Verify.Model
 {
-    public class CardRegistrationStatusResult
+    public class CardRegistrationVerificationResult
     {
-        public CardRegistrationStatusResult(string cardId, bool pinPresent)
+        public CardRegistrationVerificationResult(string cardId, bool pinPresent)
         {
             CardId = cardId;
             PinPresent = pinPresent;
