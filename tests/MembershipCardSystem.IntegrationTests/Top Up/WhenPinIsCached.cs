@@ -70,12 +70,12 @@ namespace MembershipCardSystem.IntegrationTests.Top_Up
           
             var response = await client.PutAsync("membershipcard/topup/1234dd7890123456",
                 new StringContent(
-                    "{\"TopUpAmount\": \"100\",}",
+                    "{\"TopUpAmount\": \"100.10\",}",
                     Encoding.UTF8, "application/json"));
             
             var controllerResponse = JsonConvert.DeserializeObject<TopUpResponse>(await response.Content.ReadAsStringAsync()); 
             
-            Assert.Equal("100", controllerResponse.Balance);
+            Assert.Equal("100.10", controllerResponse.Balance);
 
         }
 

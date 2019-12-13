@@ -97,9 +97,10 @@ namespace MembershipCardSystem.DataStore
         public async Task<CardBalance> UpdateBalance(string cardId, string topUpAmount)
         {
             var currentBalance = await GetBalance(cardId);
-            var increaseAmount = Convert.ToInt32(topUpAmount);
+            var increaseAmount = Convert.ToDecimal(topUpAmount);
+
             
-            int newBalance = currentBalance + increaseAmount;
+            decimal newBalance = currentBalance + increaseAmount;
 
             const string sprocName = "[dbo].[SaveNewBalance]";
             
@@ -115,7 +116,7 @@ namespace MembershipCardSystem.DataStore
 
         
 
-        private async Task<int> GetBalance(string cardId)
+        private async Task<decimal> GetBalance(string cardId)
         {
             const string sprocName = "[dbo].[GetBalance]";
 
@@ -129,7 +130,7 @@ namespace MembershipCardSystem.DataStore
             var details = ((IDictionary<string, object>)dapperRow);
             var balance = (details?[cardDetails[0]])?.ToString();
             
-            var intBalance = Convert.ToInt32(balance);
+            var intBalance = Convert.ToDecimal(balance);
             
             return intBalance;
             //return new CardBalance(balance);
