@@ -25,9 +25,11 @@ namespace MembershipCardSystem.LogIn
 
         [HttpPost]
         [Route("membershipcard/login")]
-        [SwaggerOperation("Log in users card ")]
+        [SwaggerOperation("Authenticates card PIN against cards ID, stores pin in memory cache for 10 minutes")]
         [SwaggerResponse(204, "The card has been logged in")]
+        [SwaggerResponse(403, "The provided details are not valid")]
         [SwaggerResponse(400, ErrorMessage)]
+        [SwaggerResponse(500, Description = "Unexpected database failure")]
         [SwaggerRequestExample(typeof(LogInRequest), typeof(LogInRequestModelExample))]
 
         public async Task<IActionResult> LogIn([FromBody] LogInRequest logInRequest)
@@ -48,7 +50,7 @@ namespace MembershipCardSystem.LogIn
 
                 if (!IsPinCorrect(currentPin, logInRequest.CardPin))
                 {
-                    return Unauthorized();
+                    return StatusCode(StatusCodes.Status403Forbidden);
                 }
 
                 return NoContent();

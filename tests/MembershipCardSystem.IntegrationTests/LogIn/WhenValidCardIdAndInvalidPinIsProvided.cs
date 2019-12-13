@@ -47,7 +47,7 @@ namespace MembershipCardSystem.IntegrationTests.LogIn
                     "\"CardPin\": \"4444\",}",
                     Encoding.UTF8, "application/json"));;
             
-            Assert.Equal((HttpStatusCode) StatusCodes.Status401Unauthorized, response.StatusCode);
+            Assert.Equal((HttpStatusCode) StatusCodes.Status403Forbidden, response.StatusCode);
 
         }
     }

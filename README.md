@@ -53,3 +53,9 @@ WIP WIP WIP WIP
 - Phone number has been assumed to be up to 22 digits.
 - Phone number has been chosen to be inputed as a string, so it's limit is restriced to 22  upon request and so it will be easier to validate later on.
 - Phone number has not been validated whether it is accurate or not as it is unclear, which countrys phone numbers should be accepted.
+
+
+Other notes
+
+Status endpoint
+- Not documented as it's primary use is for API monitoring purposes (example - Runscope)
