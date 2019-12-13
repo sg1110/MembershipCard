@@ -39,7 +39,8 @@ namespace MembershipCardSystem.IntegrationTests.Registration
                 new StringContent("{\"EmployeeId\": \"IDIntegrationTest\"," +
                                   "\"FirstName\": \"TestName\"," +
                                   "\"SecondName\": \"TestName\"," +
-                                  "\"MobileNumber\": \"0123456789901234567891234567890\"}"
+                                  "\"MobileNumber\": \"0123456789901234567891234567890\"," +
+                                  "\"CardId\": \"ID34567890123456\"}"
                     ,
                     Encoding.UTF8, "application/json"));
             

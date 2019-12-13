@@ -30,7 +30,7 @@ namespace MembershipCardSystem.DataStore.IntegrationTest
         [Fact]
         public async Task Save_registration_details()
         { 
-            await _dataStore.SaveRegistrationDetails("Test2", "2Name", "2Surname", "01234567890");
+            await _dataStore.SaveRegistrationDetails("Test2", "2Name", "2Surname", "01234567890", "01234ajshdgqkchm");
             
             var selectSql = "Select first_name from dbo.Card WHERE employee_id in ('Test2')";
             var result = await _connection.QueryAsync(selectSql);

@@ -8,16 +8,18 @@ namespace MembershipCardSystem.DataStore
     {
         Task<IEnumerable<string>> GetAll();
         
-        Task<IEnumerable<dynamic>> SaveRegistrationDetails(string employeeId,
+        Task SaveRegistrationDetails(string employeeId,
             string firstName,
             string secondName,
-            string mobileNumber);
+            string mobileNumber,
+            string cardId);
         
         Task<Card> VerifyCardRegistration(string cardId);
         
          Task<string> GetPin(string cardId);
  
          Task<CardBalance> UpdateBalance(string cardId, string topUpAmount);
+         
          Task<User> GetName(string cardId);
     }
 }

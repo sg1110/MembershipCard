@@ -8,6 +8,7 @@ using MembershipCardSystem.Registration.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace MembershipCardSystem.Registration
 {
@@ -25,7 +26,7 @@ namespace MembershipCardSystem.Registration
 
         [HttpPost]
         [Route("membershipcard/register")]
- //       [SwaggerResponse(201, Description = "New card details have been registered")]
+        [SwaggerResponse(200, Description = "New card details have been registered")]
 
         public async Task<IActionResult> Add([FromBody] CardDetails cardDetails)
         {
@@ -41,9 +42,10 @@ namespace MembershipCardSystem.Registration
                 await _cardRepository.SaveRegistrationDetails(cardDetails.EmployeeId,
                     cardDetails.FirstName,
                     cardDetails.SecondName,
-                    cardDetails.MobileNumber);
+                    cardDetails.MobileNumber,
+                    cardDetails.CardId);
                 
-                return Created("", null);
+                return Ok ("Card details registered");
             }
             catch (DbException e)
             {

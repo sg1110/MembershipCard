@@ -23,21 +23,21 @@ namespace MembershipCardSystem.IntegrationTests.Registration
         
         private void ClearTestData()
         {
-            _connection.Execute("DELETE FROM [dbo].[Card] WHERE employee_id in ('IDIntegrationTest')");
+            _connection.Execute("DELETE FROM [dbo].[Card] WHERE employee_id in ('IdIdId1')");
         }
         
         [Fact]
         public async void Will_return_sucess_status_code()
         {
             var client = Factory.CreateClient();
-            
-            
+
             var response = await client.PostAsync("membershipcard/register",
                 new StringContent(
-                    "{\"EmployeeId\": \"IDIntegrationTest\"," +
+                    "{\"EmployeeId\": \"IdIdId1\"," +
                     "\"FirstName\": \"TestName\"," +
-                    "\"SecondName\": \"TestName\"," +
-                    "\"MobileNumber\": \"0123456789\"}",
+                    "\"SecondName\": \"TestSurname\"," +
+                    "\"MobileNumber\": \"0123456789\"," +
+                    "\"CardId\": \"hdhdh2hdhdhdhdhd\"}",
                     Encoding.UTF8, "application/json"));
 
             response.EnsureSuccessStatusCode();

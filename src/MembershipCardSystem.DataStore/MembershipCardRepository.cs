@@ -26,29 +26,24 @@ namespace MembershipCardSystem.DataStore
             return justName;
 
         }
-
-        public async Task<IEnumerable<dynamic>> SaveRegistrationDetails(string employeeId,
+        
+        public async Task SaveRegistrationDetails(string employeeId,
             string firstName,
             string secondName,
-            string mobileNumber)
+            string mobileNumber,
+            string cardId)
         {
             const string sprocName = "[dbo].[SaveCardDetailInformation]";
-
-
-            var cardDetailsAdded = await _connection.QueryAsync(sprocName, new
+            
+            await _connection.QueryAsync(sprocName, new
             {
                 employee_id = employeeId,
                 first_name = firstName,
                 second_name = secondName,
                 mobile_number = mobileNumber,
-                card_id = RandomString(16)
+                card_id = cardId
 
             }, commandType: CommandType.StoredProcedure);
-            
-//            addsqlexception
-
-            return cardDetailsAdded;
-
         }
 
         //Fix below so it only returns pin and id and it checks at the controller if its ok
