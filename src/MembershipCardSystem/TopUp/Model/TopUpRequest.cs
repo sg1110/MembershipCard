@@ -8,10 +8,7 @@ namespace MembershipCardSystem.TopUp.Model
         {
             TopUpAmount = topUpAmount;
         }
-//        [Required]
-//        [StringLength(16)]
-//        public string CardId { get; }
-
+        
         [Required]
         [StringLength(10)]
         public string TopUpAmount { get; }

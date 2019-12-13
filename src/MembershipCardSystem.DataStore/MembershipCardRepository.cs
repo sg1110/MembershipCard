@@ -113,8 +113,24 @@ namespace MembershipCardSystem.DataStore
             return new CardBalance( newBalance.ToString());
         }
 
+        public async Task<User> GetName(string cardId)
+        {
+            const string sprocName = "[dbo].[GetName]";
+            
+            var userName = await _connection.QueryAsync(sprocName, new
+            {
+                card_id = cardId
+            }, commandType: CommandType.StoredProcedure);
+            
+            var dapperRow = userName.FirstOrDefault();
+            var cardDetails= ((IDictionary<string, object>)dapperRow)?.Keys.ToArray();
+            var details = ((IDictionary<string, object>)dapperRow);
+            var name = (details?[cardDetails[0]])?.ToString();
+            
+            return new User(name);
 
-        
+        }
+
 
         private async Task<decimal> GetBalance(string cardId)
         {
@@ -133,8 +149,6 @@ namespace MembershipCardSystem.DataStore
             var intBalance = Convert.ToDecimal(balance);
             
             return intBalance;
-            //return new CardBalance(balance);
-
         }
         
 
