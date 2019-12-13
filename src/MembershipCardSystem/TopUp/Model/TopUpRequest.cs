@@ -4,11 +4,16 @@ namespace MembershipCardSystem.TopUp.Model
 {
     public class TopUpRequest
     {
+        public TopUpRequest(string topUpAmount)
+        {
+            TopUpAmount = topUpAmount;
+        }
 //        [Required]
 //        [StringLength(16)]
 //        public string CardId { get; }
 
         [Required]
-        public int TopUpAmount { get; }
+        [StringLength(10)]
+        public string TopUpAmount { get; }
     }
 }

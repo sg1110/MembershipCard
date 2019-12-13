@@ -2,12 +2,12 @@ namespace MembershipCardSystem.DataStore.Model
 {
     public class CardBalance 
     {
-        public CardBalance(int balance)
+        public CardBalance(string balance)
         {
             Balance = balance;
         }
 
-        public int Balance { get; }
+        public string Balance { get; }
         
     }
 }

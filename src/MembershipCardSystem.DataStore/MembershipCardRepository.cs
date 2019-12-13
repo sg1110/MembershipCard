@@ -94,20 +94,28 @@ namespace MembershipCardSystem.DataStore
 
         }
 
-        public Task<object> UpdateBalance(string cardId, int topUpAmount)
+        public async Task<CardBalance> UpdateBalance(string cardId, string topUpAmount)
         {
+            var currentBalance = await GetBalance(cardId);
+            var increaseAmount = Convert.ToInt32(topUpAmount);
             
-            //check for pin first
-            //get balance
-            //sum up
-            //return new balance
-            throw new NotImplementedException();
+            int newBalance = currentBalance + increaseAmount;
+
+            const string sprocName = "[dbo].[SaveNewBalance]";
+            
+            await _connection.QueryAsync(sprocName, new
+            {
+                balance = newBalance,
+                card_id = cardId
+            }, commandType: CommandType.StoredProcedure);
+            
+            return new CardBalance( newBalance.ToString());
         }
 
 
         
 
-        private async Task<object> GetBalance(string cardId)
+        private async Task<int> GetBalance(string cardId)
         {
             const string sprocName = "[dbo].[GetBalance]";
 
@@ -119,10 +127,11 @@ namespace MembershipCardSystem.DataStore
             var dapperRow = cardBalance.FirstOrDefault();
             var cardDetails= ((IDictionary<string, object>)dapperRow)?.Keys.ToArray();
             var details = ((IDictionary<string, object>)dapperRow);
+            var balance = (details?[cardDetails[0]])?.ToString();
             
-            object balance = (details?[cardDetails[0]]);
-
-            return balance;
+            var intBalance = Convert.ToInt32(balance);
+            
+            return intBalance;
             //return new CardBalance(balance);
 
         }

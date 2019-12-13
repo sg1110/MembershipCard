@@ -4,7 +4,9 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
+using MembershipCardSystem.TopUp.Model;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Newtonsoft.Json;
 using Xunit;
 
 namespace MembershipCardSystem.IntegrationTests.Top_Up
@@ -35,22 +37,6 @@ namespace MembershipCardSystem.IntegrationTests.Top_Up
             _connection.Execute("DELETE FROM [dbo].[Card] WHERE employee_id in ('TestID11')");
         }
 
-        [Fact]
-        public async void Will_return_sucess_response_code()
-        { 
-            var client = Factory.CreateClient();
-            
-           await LogIn(client);
-          
-            var response = await client.PutAsync("membershipcard/topup/1234dd7890123456",
-                new StringContent(
-                    "{\"TopUpAmount\": 100,}",
-                    Encoding.UTF8, "application/json"));;
-            
-            response.EnsureSuccessStatusCode();
-
-        }
-
         private static async Task LogIn(HttpClient client)
         {
             await client.PostAsync("membershipcard/login",
@@ -60,6 +46,39 @@ namespace MembershipCardSystem.IntegrationTests.Top_Up
                     Encoding.UTF8, "application/json"));
         }
         
+        [Fact]
+        public async void Will_return_sucess_response_code()
+        {
+            var client = Factory.CreateClient();
+            await LogIn(client);
+          
+            var response = await client.PutAsync("membershipcard/topup/1234dd7890123456",
+                new StringContent(
+                    "{\"TopUpAmount\": \"100\",}",
+                    Encoding.UTF8, "application/json"));;
+            
+            response.EnsureSuccessStatusCode();
+
+        }
+        
+        [Fact]
+        public async void Will_return_new_balance_information()
+        { 
+            var client = Factory.CreateClient();
+            
+            await LogIn(client);
+          
+            var response = await client.PutAsync("membershipcard/topup/1234dd7890123456",
+                new StringContent(
+                    "{\"TopUpAmount\": \"100\",}",
+                    Encoding.UTF8, "application/json"));
+            
+            var controllerResponse = JsonConvert.DeserializeObject<TopUpResponse>(await response.Content.ReadAsStringAsync()); 
+            
+            Assert.Equal("100", controllerResponse.Balance);
+
+        }
+
     }
 }
 

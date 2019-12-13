@@ -29,27 +29,23 @@ namespace MembershipCardSystem.TopUp
         public async Task<IActionResult> Add(string cardId,[FromBody] TopUpRequest topUpRequest)
         {
             if (!_cachingPin.IsPinCached(cardId)) return Unauthorized();
+            try
             {
-                try
-                {
-                    //   var result = await _cardRepository.UpdateBalance(cardId, topUpRequest.TopUpAmount);
+                var result = await _cardRepository.UpdateBalance(cardId, topUpRequest.TopUpAmount);
 
-                    return Ok(new TopUpResponse(1, 1));
-                }
-
-                catch (DbException e)
-                {
-                    if (e.Message.Contains(ErrorMessage).Equals(true))
-                    {
-                        return StatusCode(StatusCodes.Status400BadRequest, e);
-
-                    }
-
-                    return StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
-                }
+                return Ok(new TopUpResponse(topUpRequest.TopUpAmount, result.Balance));
             }
 
-            return Unauthorized();
+            catch (DbException e)
+            {
+                if (e.Message.Contains(ErrorMessage).Equals(true))
+                {
+                    return StatusCode(StatusCodes.Status400BadRequest, e);
+
+                }
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+            }
         }
     }
 }
