@@ -36,7 +36,7 @@ A collection of web service API's for kiosk terminals.
 - As a card user I will need to present my pin for authentication.
 
 
-## List of Backend API's required to meet user stories ##
+## List of REST API's required to meet user stories ##
 - Verify enpoint - to check if the card has been registered and if pin has been set.
 - Register endpoint - to register new card.
 - Log in endpoint - to be used to authenticate if the card user is who they say they are.
