@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MembershipCardSystem.Registration.Model
 {
-    public class CardDetails
+    public class RegistrationRequest
     {
         [Required]
         [StringLength(20)]
@@ -23,6 +23,15 @@ namespace MembershipCardSystem.Registration.Model
         [Required]
         [StringLength(16)]
         public string CardId { get; set; }
+
+        public RegistrationRequest(string employeeId, string firstName, string secondName, string mobileNumber, string cardId)
+        {
+            EmployeeId = employeeId;
+            FirstName = firstName;
+            SecondName = secondName;
+            MobileNumber = mobileNumber;
+            CardId = cardId;
+        }
     }
     
 }

@@ -100,7 +100,7 @@ namespace MembershipCardSystem
                         : apiDesc.HttpMethod;
                     return $"PS_{methodName}";
                 });
-                options.CustomSchemaIds(type => $"PS_{type.FullName}");
+                options.CustomSchemaIds(type => $"{type.Name}");
 //                options.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
 //                {
 //                    {"Pin", Enumerable.Empty<string>()},

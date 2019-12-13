@@ -47,7 +47,10 @@ namespace MembershipCardSystem.IntegrationTests.Registration
             Assert.Equal((HttpStatusCode) StatusCodes.Status400BadRequest, response.StatusCode);
         }
         
-        //Provide own error model to remove dynamic call?
+        /// <summary>
+        /// Currently tests contain a dynamic attribute.
+        /// To improve this in the future, I would implement exception middleware with expected error response models
+        /// </summary>
         [Fact]
         public async void When_phone_number_is_longer_than_expected_will_return_validation_error()
         {

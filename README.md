@@ -1,10 +1,10 @@
 # Membership Card System #
 
-## Summary: ##
+## Summary ##
 
 A collection of web service API's for kiosk terminals.
 
-## Available information ##
+## Available information: ##
 
 - Data cards consist of unique sequence of 16 alphanumeric characters.
 - For registration information will be provided:
@@ -15,7 +15,7 @@ A collection of web service API's for kiosk terminals.
 - A four digit ping will be chosen by the employee for further security.
 - The application will timeout after 10 minutes.
 
-## Assumptions made, due to lack of requirement information ##
+## Assumptions made, due to lack of requirement information: ##
 
 - It is assumed that when name is provided it will include first and last name (name and surname).
 - In the brief it has not been specifically asked to provide and enpoint for setting a pin, thus this has not been implemented.
@@ -24,6 +24,8 @@ A collection of web service API's for kiosk terminals.
 - It has been assumed that users will not store a significantly large amount of money in the card, thus a balance can only go up to 8 digit number (example - 10000000)
 - It is a requirement that the appplication should time out after 10 minutes, but it is also a requirement to develop REST API service. REST API services should not be tracking user sessions and each request should be validated, authenticated and authorised, preferably using user or service tokens (depending on the API endpoint). However, as it is has been a requirement to implement a time out and no information is known about currently existing identity services, user pin will be stored in memory cache for 10 minutes, this will allow user to use top up endpoint for the next 10 minutes.
 - It is a requirement to implement an enpoint that will provide a welcome and goodbye message.....(finish later)
+
+
 
 ## User Stories: ##
 
@@ -36,7 +38,7 @@ A collection of web service API's for kiosk terminals.
 - As a card user I will need to present my pin for authentication.
 
 
-## List of REST API's required to meet user stories ##
+## List of REST API's required to meet user stories: ##
 - Verify enpoint - to check if the card has been registered and if pin has been set.
 - Register endpoint - to register new card.
 - Log in endpoint - to be used to authenticate if the card user is who they say they are.
@@ -44,3 +46,10 @@ A collection of web service API's for kiosk terminals.
 - Top Up endpoint - to be used to top up card balance (user endpoint).
 - Status endpoint - to be integrated for testing purposes to check if the APIs are responding (can be implemented with Runscope).
 
+
+WIP WIP WIP WIP
+
+### Registration data model assumptions ###
+- Phone number has been assumed to be up to 22 digits.
+- Phone number has been chosen to be inputed as a string, so it's limit is restriced to 22  upon request and so it will be easier to validate later on.
+- Phone number has not been validated whether it is accurate or not as it is unclear, which countrys phone numbers should be accepted.
