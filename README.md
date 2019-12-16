@@ -90,6 +90,7 @@ https://localhost:5001/card/v1/_interface
 - Phone number validation - currently the phone number is not validated as it has not been specified, which countries phone numbers are accepted.
 - Storing pin securely - due to lack of time pin is currently stored only as a string. To improve the security of storing a users pin the process should be changed to employ salted pin hashing.
 - Exception handling middleware - an exception handling middleware should be implemented to return standard error responses. As it is unclear what format the client would like to see the errors formatted in, this has not been implemented.
+- Testing - further extend integration tests to ensure that all unhappy path scenarios are documented and tested. All unhappy path scenarios have been tested through postman (such as validating request messages) and some through Xunit, but some are still missing. Since required and max string length attributes for request models are part of .net core features (and they should be already tested by .net core developers) these attributes have only been tested with few cases instead of all during integration tests.
 
 ## Current project limitations: ##
 - Memory cache - using memory cache prevents this system from being highly scalable. Different instances of each application will contain different in memory caches, thus preventing top up endpoint from being properly used as each instance will only know certain cached pins. This can be fixed by using a distributed cache or even better - by using Oauth services and user and service tokens.
