@@ -126,16 +126,17 @@ https://localhost:5001/card/v1/_interface
 - Phone number has been assumed to be up to 22 digits to accommodate most of the available phone numbers.
 - Phone number has been chosen to be inputted as a string, so its limit is restricted to 22 upon request.
 - Phone number has not been validated whether it is accurate or not as it is unclear, which countries phone numbers should be accepted.
-- Currently card balance is stored in the same table as card as it has not been specified that the balance could exist in more than one currency.
+- Currently card balance is stored in the same table as other card owner details as it has not been specified that the balance could exist in more than one currency.
+- If each card is required to support multiple currencies a new table for card balance should be created. This will allow to specify a balance for a selection of different currencies.
 - There is only one table since all details mentioned in this project relate to the card object.
 
 ## Testing: ##
-- Log out endpoint - as it only returns a string it has been tested only using postman.
+- Log out endpoint - as it only returns a string it has only been tested using postman.
 - This project has been tested by writing integration tests to ensure that all different scenarios go successfully through all controllers and reach the database.
 - Full end to end integration test should be carried out once this collection of APIs is implemented by the client.
-- In the future to ensure that the real database is not touched during testing an example database can be set up during testing, which can be achieved with a build script that is mentioned in to do section.
-- Due to lack of time unit tests were not written as the functionality of each function has been successfully tested using integration tests.
-- Mocks and fakes should be used in the future where necessary. For example - when token issuance service is implemented instead of calling the service that issues tokens it should be faked to return a token. This will intercept the service call and ensure that a successful response is always received. This can be especially useful when tests are ran as part of the deployment process and there might be flaky network between external dependencies and to reduce time it takes to run the tests.
+- In the future to ensure that the real database is not touched during testing an example database can be set up for testing purposes only, which can be achieved with a build script that is mentioned in the to do section.
+- Due to lack of time unit tests were not written as the functionality of each function has been successfully and thoroughly tested using integration tests.
+- Mocks and fakes should be used in the future where necessary. For example - when token issuance service is implemented instead of calling the service that issues a token it should be faked to return a token. This will intercept the service call and ensure that a successful response is always received. This can be especially useful when tests are ran as part of the deployment process and there might be flaky network between external dependencies and to reduce time it takes to run the tests.
 ![test1](images/test1.png?raw=true "test2")
 ![test2](images/test2.png?raw=true "test2")
 
