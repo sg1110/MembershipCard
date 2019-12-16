@@ -31,7 +31,7 @@ cd create_db
 
 Connect to the mssql server and run the commands that are listed in create_db folder. These commands will create the database, table and the required sprocs.
 
-- To stop the docker container running run kill.sh script. If this step is being followed from the steped mentione above please use the command mentione below to go back a folder.
+- To stop the docker container running run kill.sh script. If this step is being followed from the step mentioned above please use the command mentione below to go back a folder.
 
 ```
 cd .. 
