@@ -17,15 +17,7 @@ namespace MembershipCardSystem.DataStore
         {
             _connection = connection;
         }
-
-        public async Task<IEnumerable<string>> GetAll()
-        {
-            var sql = "SELECT * FROM dbo.Card";
-            var result = await _connection.QueryAsync<CardInfo>(sql);
-            var justName = result.Select(x => x.first_name);
-            return justName;
-
-        }
+        
         
         public async Task SaveRegistrationDetails(string employeeId,
             string firstName,
@@ -151,17 +143,5 @@ namespace MembershipCardSystem.DataStore
         {
             return !string.IsNullOrEmpty(pin);
         }
-
-        
-//To delete later because card if will be presented (ask for it in a body or route?)
-        private static Random random = new Random();
-
-        private static string RandomString(int length)
-        {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            return new string(Enumerable.Repeat(chars, length)
-                .Select(s => s[random.Next(s.Length)]).ToArray());
-        }
-
     }
 }

@@ -1,4 +1,4 @@
---Stored procedure for getting name
+--Creates stored procedure for getting name
 CREATE PROCEDURE GetName
 (@card_id varchar(16))
 AS

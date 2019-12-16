@@ -96,7 +96,7 @@ namespace MembershipCardSystem
                     var methodName = apiDesc.TryGetMethodInfo(out var methodInfo)
                         ? methodInfo.Name
                         : apiDesc.HttpMethod;
-                    return $"PS_{methodName}";
+                    return $"{methodName}";
                 });
                 options.CustomSchemaIds(type => $"{type.Name}");
                 options.EnableAnnotations();

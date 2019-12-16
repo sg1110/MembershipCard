@@ -1,3 +1,4 @@
+--Command to create card table
 USE [Membership_Card]
 GO
 CREATE TABLE [dbo].[Card](

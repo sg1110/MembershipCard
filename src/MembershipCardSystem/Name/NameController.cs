@@ -42,7 +42,7 @@ namespace MembershipCardSystem.Name
                 return Ok(new NameResponse(result.Name));
             }
 
-            catch (DbException e)
+            catch (DbException)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
             }

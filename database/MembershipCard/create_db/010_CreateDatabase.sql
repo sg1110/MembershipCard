@@ -1,3 +1,4 @@
+--Command to set up membership card database
 USE [master]
 GO
 

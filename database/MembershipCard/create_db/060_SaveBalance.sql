@@ -1,4 +1,4 @@
---Create procedure for saving new balance
+--Creates stored procedure for saving new balance
 CREATE PROCEDURE SaveNewBalance
 (@card_id varchar(16),
  @balance DECIMAL(10,2))
