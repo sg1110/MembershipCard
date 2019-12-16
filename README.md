@@ -118,7 +118,7 @@ https://localhost:5001/card/v1/_interface
 - If card has not been registed it should redirect the user to registration page. If pin is missing it should be redirected to register pin page (as this has not been a requirement to implement, register pin endpoint is not shown in the journey below).
 - User should be asked to log in first, before they are redirected to welcome screen and a top up page.
 - Service call to get name should be made once it is clear that the registration has been completed sucessfully or it is known that the card has been registered.
-- Welcome screen should deploy user name and a greeting message it can either be on the same page as top up screen or redirect to top up page next.
+- Welcome screen should show card owners name and a greeting message. This welcome message can either be on the same page as a top up screen or the welcome message can be shown and the card owner be redirected to a top up screen next.
 - As it is a requirement to implement an endpoint for a goodbye message there is a log out API that can be used to retrieve the log out message. However, as the endpoint only sends back a goodbye string, in the future it is advised to either add further functionality to the log out endpoint or just automatically display a log out screen without a need to call a back end API.
 ![journey](images/journey.png?raw=true "journey")
 
