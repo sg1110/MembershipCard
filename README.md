@@ -69,7 +69,7 @@ https://localhost:5001/card/v1/_interface
 * email
 * mobile number
 
-- A four digit ping will be chosen by the employee for further security.
+- A four digit pin will be chosen by the employee for further security.
 - The application will timeout after 10 minutes.
 
 ## Assumptions made, due to lack of information: ##
@@ -80,30 +80,28 @@ https://localhost:5001/card/v1/_interface
 - It has been assumed that users will not store a significantly large amount of money in the card, thus a balance can only go up to 8 digit number (example - 10000000)
 - It is a requirement that the application should time out after 10 minutes, but it is also a requirement to develop REST API service. REST API services should not be tracking user sessions and each request should be verified, authenticated and authorised, preferably using user or service tokens (depending on the API endpoint). However, as it is has been a requirement to implement a time out and no information is known about currently existing services that could provide user or service tokens, user pin will be stored in memory cache for 10 minutes, this will allow user to use top up endpoint for the next 10 minutes. 
 - It is a requirement to implement an endpoint that will provide a goodbye message. A get endpoint that responds only with a goodbye message has been implemented. As it was not asked for the endpoint to log out the user this has not been implemented.
-- Exception middleware - 
-
 
 ## To do: ## 
-- Build script that will automatically set up the database with all tables and stored procedures
-- OAuth - service - a service that would be responsible for issuing tokens and managing their expiration times. These tokens should be issued after the log in, once the user has managed to successfully log in with their pin and card id.
-- Log out endpoint - currently the log out endpoint only responds with a goodbye message. To improve this endpoint it should be changed to POST request that is also responsible for calling a service for invalidating access tokens.
+- Build script that will automatically set up the database with all tables and stored procedures.
+- OAuth3 - identity - service - a service that would be responsible for issuing tokens and managing their expiration times. User access tokens should be issued after the log in, once the user has managed to successfully log in with their pin and card id. These services should be able to issue both user and service tokens, so the appropriate calls can be made when required.
+- Log out endpoint - currently the log out endpoint only responds with a goodbye message. To improve this endpoint it should be changed to POST request that is also responsible for calling a service responsible for invalidating access tokens.
 - Time outs - when a service issuing tokens is implemented, retries and timeouts calling this service should also be set. This will ensure that if there is a network or connectivity blip/issue the service gets called again and can be resolved successfully.
 - Logs - currently no logging service has been implemented as it is unclear if the client would prefer the logs to be structured in any specific way. Logging service should be implemented and added to log all exceptions and when the operation on each API endpoint has been completed successfully
 - Phone number validation - currently the phone number is not validated as it has not been specified, which countries phone numbers are accepted.
-- Storing pin securely - due to lack of time pin is currently stored only as a string. To improve security storing of pin should be changed to employ salted pin hashing.
+- Storing pin securely - due to lack of time pin is currently stored only as a string. To improve the security of storing a users pin the process should be changed to employ salted pin hashing.
 - Exception handling middleware - an exception handling middleware should be implemented to return standard error responses. As it is unclear what format the client would like to see the errors formatted in, this has not been implemented.
 
 ## Current project limitations: ##
-- Memory cache - using memory cache prevents this system from being highly scalable. Different instances of each application will contain different in memory caches, thus preventing from top up endpoint from being used properly and remembering all cached pins. This can be fixed by using a distributed cache or even better - by using Oauth services and user and service tokens.
+- Memory cache - using memory cache prevents this system from being highly scalable. Different instances of each application will contain different in memory caches, thus preventing top up endpoint from being properly used as each instance will only know certain cached pins. This can be fixed by using a distributed cache or even better - by using Oauth services and user and service tokens.
 - Database connection string - currently is stored as a plain string in appsettings. Connection string of a real database should never be pushed into a github repository. If using aws services connection string could be stored in the parameter store or if deploying to on premise servers it could be injected through Octopus. For development purposed connection string could be stored a user secrets (https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-3.1&tabs=linux).
 
 ## User Stories: ##
 - As a card user I would like to register a card with the new system.
 - As a card user I would like to be informed if my details have not been registered.
 - As a card user I would like to be informed if my details have not been registered.
-- As an employee I would like to top up my card with credit, so I could purchase food in the future.
+- As a card user I would like to top up my card with credit, so I could purchase food in the future.
 - As a card user I would like to see a greeting message with my name when I tap my card.
-- As a card user I would like to see a goodbye message with my name when I tap my card the second time.
+- As a card user I would like to see a goodbye message when I tap my card the second time.
 - As a card user I will need to present my pin for authentication.
 
 ## List of REST API's required to meet user stories: ##
@@ -114,8 +112,14 @@ https://localhost:5001/card/v1/_interface
 - Top Up endpoint - to be used to top up card balance (user endpoint).
 - Status endpoint - to be integrated for testing purposes to check if the APIs are responding (can be implemented with Runscope).
 - To follow REST API best practises each standpoint should only be concerned about the task it is meant to resolve, should not track users state and should not redirect to any other pages.
-- Single responsibility principle has been followed to ensure each API is only concerned with one task.
-- The selection of API's has been developed to meet the business requirements and proposed journey for how to connect these APIs is show below
+- Single responsibility principle has been followed to ensure each API is only concerned with one clear purpose.
+- The selection of API's has been developed to meet the business requirements and proposed journey for how to connect these APIs is shown below.
+- API should be connected each card is first checked if it has been registered and if pin is present. 
+- If card has not been registed it should redirect the user to registration page. If pin is missing it should be redirected to register pin page (as this has not been a requirement to implement, register pin endpoint is not shown in the journey below).
+- User should be asked to log in first, before they are redirected to welcome screen and a top up page.
+- Service call to get name should be made once it is clear that the registration has been completed sucessfully or it is known that the card has been registered.
+- Welcome screen should deploy user name and a greeting message it can either be on the same page as top up screen or redirect to top up page next.
+- As it is a requirement to implement an endpoint for a goodbye message there is a log out API that can be used to retrieve the log out message. However, as the endpoint only sends back a goodbye string, in the future it is advised to either add further functionality to the log out endpoint or just automatically display a log out screen without a need to call a back end API.
 ![journey](images/journey.png?raw=true "journey")
 
 ## Database assumptions ##
