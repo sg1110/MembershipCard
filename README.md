@@ -50,7 +50,7 @@ cd ..
 ## How to use swagger: ##
 - The project comes with swagger integrated, which has been modified to fully document the endpoints.
 - This allows user to review the expected response codes and request data models.
-- Swagger user interface also allows to interreact with the projects APIs and try them out.
+- Swagger user interface allows to interact with the projects APIs and try them out.
 - To run swagger, ensure that the project is running and go to the path 
 
 https://localhost:5001/card/swagger/index.html
