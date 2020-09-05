@@ -83,7 +83,7 @@ https://localhost:5001/card/v1/_interface
 
 ## To do: ## 
 - Build script that will automatically set up the database with all tables and stored procedures.
-- OAuth3 - identity - service - a service that would be responsible for issuing tokens and managing their expiration times. User access tokens should be issued after the log in, once the user has managed to successfully log in with their pin and card id. These services should be able to issue both user and service tokens, so the appropriate calls can be made when required.
+- OAuth - identity - service - a service that would be responsible for issuing tokens and managing their expiration times. User access tokens should be issued after the log in, once the user has managed to successfully log in with their pin and card id. These services should be able to issue both user and service tokens, so the appropriate calls can be made when required.
 - Log out endpoint - currently the log out endpoint only responds with a goodbye message. To improve this endpoint it should be changed to POST request that is also responsible for calling a service responsible for invalidating access tokens.
 - Time outs - when a service issuing tokens is implemented, retries and timeouts calling this service should also be set. This will ensure that if there is a network or connectivity blip/issue the service gets called again and can be resolved successfully.
 - Logs - currently no logging service has been implemented as it is unclear if the client would prefer the logs to be structured in any specific way. Logging service should be implemented and added to log all exceptions and when the operation on each API endpoint has been completed successfully
